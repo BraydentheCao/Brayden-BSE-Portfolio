@@ -7,8 +7,6 @@ You should comment out all portions of your portfolio that you have not complete
 <!--- Anything between these symbols will not render on the published site -->
 ```
 
-| **Engineer** | **School** | **Area of Interest** | **Grade** |
-|:--:|:--:|:--:|:--:|
 | Brayden C | Naperville North High School | Computer Engineering | Incoming Senior
 
 
@@ -40,43 +38,93 @@ For your second milestone, explain what you've worked on since your previous mil
 - Previous challenges you faced that you overcame
 - What needs to be completed before your final milestone 
 
-# First Milestone
-
-**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
+# First Milestone - Assemble the robot and add working ultrasonic sensors
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/CaCazFBhYKs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 For your first milestone, describe what your project is and how you plan to build it. You can include:
-- An explanation about the different components of your project and how they will all integrate together
-- Technical progress you've made so far
-- Challenges you're facing and solving in your future milestones
-- What your plan is to complete your project
+- How everything works togetherCurrently, the robot is comprised of two motors, a raspberry pi, a L298n motor driver, a small breadboard, and two ultrasonic sensors. The image below contains a picture of the schematics with all of the different componenets and how they are powered and controlled electrically
 
+- Technical summary: So far, I have assembled the base of the robot with motors and wheels, as well as all of the components previously mentioned, all of which are fully wired and fully functional. For example, I am able to pick up distance readings from both ultrasonic sensors. In addition, I also coded the robot to where it can continuously adjust it's position to be 8-10 cm away from an object by using the ultrasonic sensors and adjusting the speed of the motors accordingly. Currently this feature is only being tested on the left ultrasonic sensor and being applied to both motors for ease of testing 
+
+- Challenges:
+- So far, I have faced a multitude of challenges, most of which have been due to wiring issues in some capacity. The first one I encountered was using an L298n instead of the motor drivers we were given, as I unfortunately did not recieve the motor drivers, and so instead I decided to improvise by using my own ones. It took a little bit more wiring and slightly different coding, and after some retries with wiring, both motors worked as intended with proper speed control
+- The second challenge I faced was with wiring the ultrasonic sensors. The ultrasonic sensors' echo wire needs to have a voltage cap of 3.3V before it can be connected to the raspberry pi (it outputs a signal with 5V), therefore 1K and 2K resistor must be use as not to damage the raspberry pi. At first, I wasn't able to figure out why exactly my wires had an issue, but some time, I realized it was because I connected the resistor and echo wire on different rails and so they weren't actually connected
+- The third challenge I faced was with controling the robot with the ultrasonic sensors. I was able to get the robot to move forward above 10 cm of distance (using the formula speed = 0.05*distance+0.4) and get the robot the move backward with a distance under 8 cm, however the issue was that robot would start ocillating between the forward and backwards motion likely due to the robot overshooting the intended distance. Another issue was below around a speed of 0.3-0.4, the robot wasn't able to spin its motors likely due to too low of a voltage and a lack of torque. Very likely I will have to use PID controls to assist with this
+
+- Plan to complete your project:
+- Attach the camera, code it, and get it to work with the ultrasonic sensors
+- After the base project is done, I would like to add a control aspect to the robot, such as using my hand in some way to control it.
+  
 # Schematics 
-Here's where you'll put images of your schematics. [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser. 
+<img width="717" height="762" alt="image" src="https://github.com/user-attachments/assets/4e5b79de-aa66-4abd-90b7-6870576d4a89" />
 
 # Code
-Here's where you'll put your code. The syntax below places it into a block of code. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize it to your project needs. 
 
-```c++
-void setup() {
-  // put your setup code here, to run once:
-  Serial.begin(9600);
-  Serial.println("Hello World!");
-}
+```python
+import RPi.GPIO as GPIO
+from gpiozero import Motor
+from time import sleep
 
-void loop() {
-  // put your main code here, to run repeatedly:
 
-}
+rightMotor = Motor(forward=17, backward=27, enable=12, pwm=True)
+leftMotor = Motor(forward=22, backward=23, enable=13, pwm=True)
+
+GPIO.setmode(GPIO.BCM)
+TRIGL = 6
+ECHOL = 5
+GPIO.setup(TRIGL, GPIO.OUT)
+GPIO.setup(ECHOL, GPIO.IN)
+
+TRIGR = 26
+ECHOR = 16
+GPIO.setup(TRIGR, GPIO.OUT)
+GPIO.setup(ECHOR, GPIO.IN)
+
+
+while True:
+      GPIO.output(TRIGL, False)
+      time.sleep(0.5)
+      
+      GPIO.output(TRIGL, True)
+      time.sleep(0.00001)
+      GPIO.output(TRIGL, False)
+      
+      pulse_startL = time.time()
+      while GPIO.input(ECHOL) == 0:
+          pulse_startL = time.time()
+          
+      pulse_endL = time.time()
+      while GPIO.input(ECHOL) == 1:
+          pulse_endL = time.time()
+      pulse_durationL = pulse_endL - pulse_startL
+      distanceL = round(pulse_durationL * 17150,3)
+      
+      print(f"Distance: {distanceL} cm")
+
+      speedLeft = distanceL*0.005+0.5  # Adjust speed based on distance
+      if distanceL > 10 and distanceL < 100:
+          speedLeft = distanceL*0.005+0.35
+          leftMotor.forward(speedLeft)
+          rightMotor.forward(speedLeft)
+      elif distanceL <= 10 and distanceL > 8:
+          speedLeft = 0
+          leftMotor.forward(speedLeft)
+          rightMotor.forward(speedLeft)
+      elif distanceL <= 8:
+          speedLeft = .3
+          leftMotor.backward(speedLeft)
+          rightMotor.backward(speedLeft)
+          sleep(.1)
+      else:
+          leftMotor.forward(0)
+          rightMotor.forward(0)
 ```
 
 # Bill of Materials
 Here's where you'll list the parts in your project. To add more rows, just copy and paste the example rows below.
 Don't forget to place the link of where to buy each component inside the quotation marks in the corresponding row after href =. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize this to your project needs. 
 
-| **Part** | **Note** | **Price** | **Link** |
-|:--:|:--:|:--:|:--:|
 | Raspberry Pi Kit | What the item is used for | $95.19 | <a href="https://www.amazon.com/RasTech-Raspberry-Starter-Heatsink-Screwdriver/dp/B0C8LV6VNZ"> Link </a> |
 | Robot Chassis | What the item is used for | $18.99 | <a href="https://www.amazon.com/Smart-Chassis-Motors-Encoder-Battery/dp/B01LXY7CM3"> Link </a> |
 | Screwdriver Kit | What the item is used for | $5.94 | <a href="https://www.amazon.com/Small-Screwdriver-Set-Mini-Magnetic/dp/B08RYXKJW9"> Link </a> |
