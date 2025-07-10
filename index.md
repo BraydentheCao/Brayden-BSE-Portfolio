@@ -1,12 +1,7 @@
 # Ball Tracking Robot
 Robot that tracks a ball using a raspberry pi camera and two ultrasonic sensors
-You should comment out all portions of your portfolio that you have not completed yet, as well as any instructions:
-```HTML 
-<!--- This is an HTML comment in Markdown -->
-<!--- Anything between these symbols will not render on the published site -->
-```
 
-| Brayden C | Naperville North High School | Computer Engineering | Incoming Senior
+| Brayden C | Naperville North High School | Computer Engineering | Incoming Senior |
 
 
 ![Headstone Image](logo.svg)
