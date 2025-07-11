@@ -32,7 +32,7 @@ For your second milestone, explain what you've worked on since your previous mil
 
 # First Milestone - Assemble the robot and add working ultrasonic sensors
 
-<iframe width="560" height="315" src="https://youtu.be/r7C_AkfogU0?si=6kramTOzeaHUd2LN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="<iframe width="560" height="315" src="https://www.youtube.com/embed/r7C_AkfogU0?si=wncgSTxgScqFEAFU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 For your first milestone, describe what your project is and how you plan to build it. You can include:
 
