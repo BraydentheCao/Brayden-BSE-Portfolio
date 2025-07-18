@@ -1,2 +1,4 @@
-theme: jekyll-theme-hacker
+remote_theme: mmistakes/minimal-mistakes
+plugins:
+  - jekyll-remote-theme
 markdown: kramdown
