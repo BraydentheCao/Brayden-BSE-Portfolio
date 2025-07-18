@@ -1,4 +1,4 @@
-remote_theme: jitinnair1/gradfolio
+remote_theme: liamg/jekyll-theme-abysm
 plugins:
   - jekyll-remote-theme
 title: My Portfolio
