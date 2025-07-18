@@ -1,4 +1,4 @@
-remote_theme: barryclark/jekyll-now
+remote_theme: wowthemesnet/template-pintereso-bootstrap-jekyll
 plugins:
   - jekyll-remote-theme
 title: My Portfolio
