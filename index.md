@@ -72,18 +72,58 @@ How does it work?
 - This offset information then becomes useful input data for the rotation PID 
 
 Code (very reduced)
-...Initialize camera and web streaming...
+
+```python
+# ...Initialize camera and web streaming...
 
 def track_red_ball(frame):
   hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
-def generate_frames(): # Runs the code
+  # Color ranges
+  lower_red1 = np.array([0, 100, 100])
+  # ...Other 3 np arrays for color ranges... 
+
+  # Binary mask
+  mask1 = cv2.inRange(hsv, lower_red1, upper_red1)
+  mask2 = cv2.inRange(hsv, lower_red2, upper_red2)
+  mask = cv2.bitwise_or(mask1, mask2)
+
+  # Morphological opporations  
+  mask = cv2.erode(mask, None, iterations=2)
+  mask = cv2.dilate(mask, None, iterations=2)
+
+  # Create contours
+  countours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+  if countours:
+      largest = max(countours, key=cv2.contourArea)
+      M = cv2.moments(largest)
+      ((x, y), radius) = cv2.minEnclosingCircle(largest)
+      
+      if M["m00"] != 0 and radius > 50:
+          cX = int(M["m10"] / M["m00"])
+          cY = int(M["m01"] / M["m00"])
+          offset = cX - CENTER_X # Useful PID input data
+
+          # Draw the contours and center of the circle
+          cv2.drawContours(frame, [largest], -1, (0, 255, 0), 2)
+          cv2.circle(frame, (cX, cY), 5, (255, 0, 0), -1)
+          cv2.line(frame, (cX, 0), (cX, frame.shape[0]), (255, 0, 0), 1)
+          cv2.line(frame, (0, cY), (frame.shape[1], cY), (255, 0, 0), 1)
+
+def generate_frames(): # Runs the track_red_ball() function
     while True:
         frame = picam2.capture_array()
         # frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
         frame = track_red_ball(frame)
         ret, buffer = cv2.imencode('.jpg', frame)
         jpg_frame = buffer.tobytes()
+```
+
+### PID and rotation algorithm
+
+What is it? 
+- Takes the pixel offset of the ball and calculates the amount of turn needed 
+- Goal: Rotate the robot such that the ball is in the center
 
 
 
