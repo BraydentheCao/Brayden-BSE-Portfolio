@@ -1,1 +1,1 @@
-https://braydenthecao.github.io/Brayden_BSEPortfolio/
+https://braydenthecao.github.io/Brayden-BSE-Portfolio/
