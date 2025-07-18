@@ -50,7 +50,7 @@ What is it?
 
 How does it work? 
 - A function called generate_frames() captures camera frames, processes them, encodes them as JPEG, and streams them using an HTTP format (multipart/x-mixed-replace).
-- /route serves an HTML page (basically html embedded into my python code) with an <img src="/video_feed">, which shows the live video.
+- /route serves an HTML page (basically html embedded into my python code), which shows the live video.
 - /video_feed route streams the processed video as a continuous sequence of JPEG images, simulating a video feed in the browser.
 - The app.run() function starts a local web server on port 5000, so any device on the network can view the stream at http://<raspberry-pi-ip>:5000/
 - Methods such as cv2.putText(...) allow information and text to be displayed and updated within the video
@@ -123,10 +123,11 @@ def generate_frames(): # Runs the track_red_ball() function
 
 What is it? 
 - Takes the pixel offset of the ball and calculates the speed needed to rotate to the ball
-- If the offset is high, the turning happens with a 
 - Goal: Rotate the robot such that the ball is in the center
 
-
+How does it work?
+- The algorithm is seperated into two parts: A PID function that takes in the current and target position and returns speed & a main code that handles what to do with this speed given a certain offset
+- The PID function, called ballAnglePID, takes in two parameters: Current x-coordinate of the ball's center and target x-coordinate. Using these two parameters, it calculates the current error. PID works by adding together three different variables, P (proportional), I (integral), and D (derivative). P uses the current 
 
 Suprises about the project so far
 
