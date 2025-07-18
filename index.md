@@ -71,7 +71,7 @@ How does it work?
 - To find the center, the average x and y coordinate of every contour is used. This center point of the ballcan then be compared to the actual center of the camera to find the x and y offset of the ball (we care about the x offset only because we can control the left and right position of the ball by turning)
 - This offset information then becomes useful input data for the rotation PID 
 
-Code (very reduced)
+Code (reduced)
 
 ```python
 # ...Initialize camera and web streaming...
@@ -119,10 +119,11 @@ def generate_frames(): # Runs the track_red_ball() function
         jpg_frame = buffer.tobytes()
 ```
 
-### PID and rotation algorithm
+### PID rotation algorithm
 
 What is it? 
-- Takes the pixel offset of the ball and calculates the amount of turn needed 
+- Takes the pixel offset of the ball and calculates the speed needed to rotate to the ball
+- If the offset is high, the turning happens with a 
 - Goal: Rotate the robot such that the ball is in the center
 
 
