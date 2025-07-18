@@ -1,4 +1,4 @@
-remote_theme: qwtel/hydejack
+remote_theme: barryclark/jekyll-now
 plugins:
   - jekyll-remote-theme
 title: My Portfolio
