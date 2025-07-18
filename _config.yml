@@ -1,4 +1,71 @@
+# Theme setup
 remote_theme: mmistakes/minimal-mistakes
 plugins:
   - jekyll-remote-theme
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Markdown
 markdown: kramdown
+kramdown:
+  input: GFM
+
+# Site info
+title: My Project Portfolio
+name: Your Name
+description: >-
+  A showcase of my projects in engineering, robotics, and technology.
+url: "https://yourusername.github.io"
+baseurl: ""  # or "/repo-name" if it's a project page
+
+# Skin
+minimal_mistakes_skin: default  # Try "air", "dark", or "contrast" too
+locale: "en-US"
+
+# Author
+author:
+  name: "Your Name"
+  avatar: "/assets/images/bio.jpg"
+  bio: "Student engineer and robotics enthusiast."
+  location: "Your City"
+  links:
+    - label: "GitHub"
+      icon: "fab fa-github"
+      url: "https://github.com/yourusername"
+    - label: "LinkedIn"
+      icon: "fab fa-linkedin"
+      url: "https://linkedin.com/in/yourusername"
+
+# Navigation links
+nav:
+  - title: "Home"
+    url: "/"
+  - title: "Projects"
+    url: "/portfolio/"
+  - title: "About"
+    url: "/about/"
+
+# Footer links (optional)
+footer:
+  links:
+    - label: "GitHub"
+      icon: "fab fa-github"
+      url: "https://github.com/yourusername"
+
+# Output settings
+include:
+  - _pages
+
+# Collections for portfolio
+collections:
+  portfolio:
+    output: true
+    permalink: /:collection/:name/
+
+# Exclude unnecessary files
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
