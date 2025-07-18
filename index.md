@@ -18,9 +18,7 @@ For your final milestone, explain the outcome of your project. Key details to in
 
 
 
-# Second Milestone
-
-**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
+# Second Milestone: PID, camera web streaming, ball tracking, camera distance tracking, and finished project
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/y3VAmNlER5Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
@@ -30,11 +28,76 @@ For your second milestone, explain what you've worked on since your previous mil
 - Previous challenges you faced that you overcame
 - What needs to be completed before your final milestone 
 
+## Technical summary 
+
+I've completed the base project! To get there, I've accomplished:
+- Streaming the camera video in a web browser
+- Enabling the camera to track the ball using hsv/color detection and contours (outlining the ball) to find the center of the ball
+- Creating a PID algorithm that allows the robot to properly rotate itself to the ball using the its center
+- Finish a complete ball tracking algorithm that integrates this new PID angle alignment algorithm with the previously finished distance alignment algorithm 
+
+I've also accomplished:
+- An in progress addition of tracking the ball's distance with the camera using the pinhole camera model
+- Redoing the wiring and layout of the electronics to be more compact
+- Switching around the electrical componenets for better optimization
+
+## Technical details
+
+### Streaming with the camera
+
+What is it? 
+- A live video from my robot's raspberry pi camera 
+
+How does it work? 
+- A function called generate_frames() captures camera frames, processes them, encodes them as JPEG, and streams them using an HTTP format (multipart/x-mixed-replace).
+- /route serves an HTML page (basically html embedded into my python code) with an <img src="/video_feed">, which shows the live video.
+- /video_feed route streams the processed video as a continuous sequence of JPEG images, simulating a video feed in the browser.
+- The app.run() function starts a local web server on port 5000, so any device on the network can view the stream at http://<raspberry-pi-ip>:5000/
+- Methods such as cv2.putText(...) allow information and text to be displayed and updated within the video
+
+
+### Enabling the camera to track the ball
+
+What is it? 
+- Converts every frame from the robot's camera with many different computer vision tools such as hsv, contouring, and noise reudction (erosion and dilation) to accurately find the red ball
+- Goal: Track the center of the ball and give data about how offset it is from the center of the camera's frame
+
+How does it work?
+- It starts by creating a duplicate of every original, uneditted frame and converting it into hsv
+- HSV stands for Hue, Saturation, and Value. Hue represents every color from 1-179, Saturation is the intensity from 0-255, and Value is the brightness from 0-255. HSV is used here to more accurately detect color without too much interference from light level
+- Once created, colors ranges to detect only red, a binary masks, and a bitwiseOr function turn red pixels into white, and then everything else into black
+- Morphological operations (dilate and erode) are used to reduce noise in the image, or in other words remvoe random white spots in the hsv frame (which techanically is red in the original frame). In doing so, there is a clear shape, aka the ball
+- Now that there is an hsv, contouring is used to outline the white pixels in the hsv frame (aka the ball), and this outline is then displayed on the web streaming of the camera
+- To find the center, the average x and y coordinate of every contour is used. This center point of the ballcan then be compared to the actual center of the camera to find the x and y offset of the ball (we care about the x offset only because we can control the left and right position of the ball by turning)
+- This offset information then becomes useful input data for the rotation PID 
+
+Code (very reduced)
+...Initialize camera and web streaming...
+
+def track_red_ball(frame):
+  hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+
+def generate_frames(): # Runs the code
+    while True:
+        frame = picam2.capture_array()
+        # frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+        frame = track_red_ball(frame)
+        ret, buffer = cv2.imencode('.jpg', frame)
+        jpg_frame = buffer.tobytes()
+
+
+
+Suprises about the project so far
+
+Challanges (there were many!)
+
+Final milestone plans
+
+
+
 # First Milestone - Assemble the robot and add working ultrasonic sensors
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/r7C_AkfogU0?si=wncgSTxgScqFEAFU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-For your first milestone, describe what your project is and how you plan to build it. You can include:
 
 How everything works together
 - Currently, the robot is comprised of two motors, a raspberry pi, a L298n motor driver, a small breadboard, and two ultrasonic sensors. The image below contains a picture of the schematics with all of the different componenets and how they are powered and controlled electrically
