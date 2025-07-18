@@ -1,4 +1,4 @@
-remote_theme: wowthemesnet/mediumish-theme-jekyll
+remote_theme: jitinnair1/gradfolio
 plugins:
   - jekyll-remote-theme
 title: My Portfolio
