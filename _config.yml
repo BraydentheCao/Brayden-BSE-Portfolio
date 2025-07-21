@@ -1,5 +1,5 @@
-title: Millidocs Portfolio
-description: A docs-inspired layout with search and dark styling
-remote_theme: alex-shpak/millidocs
+remote_theme: wowthemesnet/template-pintereso-bootstrap-jekyll
 plugins:
   - jekyll-remote-theme
+title: Visual Portfolio
+description: Pinterest-style grid layout with dark background
