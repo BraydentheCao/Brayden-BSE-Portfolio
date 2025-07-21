@@ -1,5 +1,25 @@
-remote_theme: wowthemesnet/template-pintereso-bootstrap-jekyll
+title: "My Portfolio"
+description: "A showcase of my projects"
+baseurl: "/Brayden-BSE-Portfolio" # leave this empty if your repo is username.github.io
+url: "https://braydenthecao.github.io/Brayden-BSE-Portfolio/"
+
+theme: "minimal-mistakes-jekyll"
+
 plugins:
-  - jekyll-remote-theme
-title: Visual Portfolio
-description: Pinterest-style grid layout with dark background
+  - jekyll-include-cache
+
+# Optional but helpful
+author:
+  name: Brayden Cao
+  avatar: "/assets/ghpagesbg.jpg"  # This will show if using `author_profile: true`
+  bio: "Student, engineer, builder."
+  location: "USA"
+
+# Enable Minimal Mistakes features
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: single
+      author_profile: true
