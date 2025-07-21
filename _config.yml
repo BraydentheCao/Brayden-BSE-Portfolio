@@ -1,5 +1,5 @@
-remote_theme: yousinix/portfolYOU
+remote_theme: pages-themes/midnight@v0.2.0
 plugins:
   - jekyll-remote-theme
-title: My Portfolio
-description: A dark, colorful Jekyll site to showcase my projects
+title: Your Portfolio
+description: A dark, stylish Jekyll site
