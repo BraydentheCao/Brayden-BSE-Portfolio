@@ -205,6 +205,10 @@ How does it work?
   - R --> Radius of the red ball in cm (physically measured)
   - D --> Distance of the ball from the camera (we are trying to find this value)
 
+
+<img width="673" height="450" alt="Screenshot 2025-07-21 000902" src="https://github.com/user-attachments/assets/44a4be94-9106-47f1-82c0-ce334b23c415" />
+
+
 ### Entire tracking algorithm  
 
   Puesdo code:
