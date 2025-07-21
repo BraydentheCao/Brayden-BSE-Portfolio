@@ -4,7 +4,7 @@ Robot that tracks a ball using a raspberry pi camera and two ultrasonic sensors
 | Brayden C | Naperville North High School | Computer Engineering | Incoming Senior |
 
 
-![Description of image](assets/ghpagesbg.jpg)
+![Description of image](logo.svg)
   
 # Final Milestone
 
