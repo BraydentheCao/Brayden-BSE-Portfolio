@@ -153,9 +153,12 @@ def ballAnglePID(current, target):
 
     curErrorA = 0.0015625*2*(target - current)
 
-    # The curError is multipled by 0.0015625*2 since the parameter "current" ranges from 0 to 640 (each frame is 640 pixels wide)
-    and the possible return values can only be between -1 and 1. Basically we are translating an error between -320 to 320 all the
-    way down to -1 to 1
+    '''
+    The curError is multipled by 0.0015625*2 since the parameter "current" ranges
+    from 0 to 640 (each frame is 640 pixels wide) and the possible return values
+    can only be between -1 and 1. Basically we are translating an error between
+    -320 to 320 all the way down to -1 to 1
+    '''
 
     kp = 0.5 # Proportional gain
     kd = 0.1  # Derivative gain
@@ -171,10 +174,13 @@ def ballAnglePID(current, target):
     prevErrorA = curErrorA
     speed = P + D # I decided not to include the "I" variable
 
-    # This if statement does two things:
-    # 1: If speed is outside of the -1 to 1 range, return a speed of 0
-    # 2: If the speed is below 0.4, return 0.4. This is because below 0.4, the robot won't move. Same applies for if the speed is negative
-
+    '''
+    This if statement does two things:
+    1: If speed is outside of the -1 to 1 range, return a speed of 0
+    2: If the speed is below 0.4, return 0.4. This is because below 0.4, the robot won't move.
+       Same applies for if the speed is negative
+    '''
+  
     if speed > -1 and speed < 1:
         if speed < 0.4 and speed > 0:   
             return 0.4
@@ -202,12 +208,31 @@ What is it?
 How does it work?
 - The function that uses the ultrasonic sensor is pretty straightforward, while the one that uses the camera is slightly more complicated. I'm only going to cover the camera because of this
 - The camera can track distance using proportions due to the nature of how the pi camera works and how it has similar triangles. Essentially, we can have the variables f, R, D, and r. Here is what they stand for:
-  - R --> Radius of the red ball in cm (physically measured)
+  - R --> Radius of the red ball in real life (physically measured in cm)
   - D --> Distance of the ball from the camera (we are trying to find this value)
+  - f --> Focal length of the camera (I found this experimentally for this project)
+  - r --> Radius of the red ball in pixels from the camera frame
 
 
 <img width="673" height="450" alt="Screenshot 2025-07-21 000902" src="https://github.com/user-attachments/assets/44a4be94-9106-47f1-82c0-ce334b23c415" />
 
+
+Based on this image, it becomes clear where the similar triangles are, and as such, we can create this proportion:
+  - D/R = f/r
+  - To isolate D, we get: D = R*f/r
+
+
+The code is really simple for this algorithm
+
+```python
+
+def measureBallDistance(r, offsetP):
+    f = 290.562
+    R = 17.78 # Radius of the ball in cm
+    D = R*f/r
+    offsetR = offsetP*D/f
+    return D 
+```
 
 ### Entire tracking algorithm  
 
@@ -231,9 +256,29 @@ How does it work?
     else: spin in place
 
 
-- In English, here's how the whole algorithm works:
-  - For one, there are two other functions, one tracks ball distance with camera, the other tracks distance with the ultrasonic sensor
-  - 
+Here's how the whole algorithm works:
+
+
+First, it calculates the current X position of the ball's center. (This code has already been shown, but this helps to clarity what happens next)
+
+```python
+countours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    if1 countours: # The if statements are numbered to make them more clear
+        largest = max(countours, key=cv2.contourArea) # Finds the largest shape made by the many contours
+        M = cv2.moments(largest) # Creates a dictionary that contains different values assosiated this this largest shape  
+        ((x, y), radius) = cv2.minEnclosingCircle(largest) # Here is where
+        
+        if M["m00"] != 0 and radius > 50:
+            cX = int(M["m10"] / M["m00"])
+            cY = int(M["m01"] / M["m00"])
+            offset = cX - CENTER_X
+            cv2.drawContours(frame, [largest], -1, (0, 255, 0), 2)
+            cv2.circle(frame, (cX, cY), 5, (255, 0, 0), -1)
+            cv2.line(frame, (cX, 0), (cX, frame.shape[0]), (255, 0, 0), 1)
+            cv2.line(frame, (0, cY), (frame.shape[1], cY), (255, 0, 0), 1)
+```
+
+
 
 Suprises about the project so far
 
