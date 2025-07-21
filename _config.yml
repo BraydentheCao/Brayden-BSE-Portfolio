@@ -23,3 +23,7 @@ defaults:
     values:
       layout: single
       author_profile: true
+
+minimal_mistakes_skin: "aqua"  # Change theme color: "air", "aqua", "contrast", "dark", "neon", "mint", etc.
+
+logo: "/assets/ghpagesbg.jpg"          # Add logo to site header
