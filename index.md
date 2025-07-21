@@ -236,7 +236,7 @@ def measureBallDistance(r, offsetP):
 
 ### Entire tracking algorithm  
 
-  Puesdo code:
+  The code structure looks something like this:
   
   PID turn function
   ball distance function using camera
@@ -259,25 +259,133 @@ def measureBallDistance(r, offsetP):
 Here's how the whole algorithm works:
 
 
-First, it calculates the current X position of the ball's center. (This code has already been shown, but this helps to clarity what happens next)
+First, it calculates the current X position of the ball's center and the radius of the ball. (This code has already been shown, but this helps to clarity where variables are coming from)
 
 ```python
 countours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     if1 countours: # The if statements are numbered to make them more clear
         largest = max(countours, key=cv2.contourArea) # Finds the largest shape made by the many contours
         M = cv2.moments(largest) # Creates a dictionary that contains different values assosiated this this largest shape  
-        ((x, y), radius) = cv2.minEnclosingCircle(largest) # Here is where
+        ((x, y), radius) = cv2.minEnclosingCircle(largest) # Here is where the center and smallest radius of the circle
         
-        if M["m00"] != 0 and radius > 50:
+        if2 M["m00"] != 0 and radius > 50: # Only runs if the radius of the shape detected is greater than 50 pixels
             cX = int(M["m10"] / M["m00"])
             cY = int(M["m01"] / M["m00"])
-            offset = cX - CENTER_X
-            cv2.drawContours(frame, [largest], -1, (0, 255, 0), 2)
+            offset = cX - CENTER_X # The offset is precalculated for some display information 
+
+            # Draws the contours, center, and lines for the x and y values of the cetner
+            cv2.drawContours(frame, [largest], -1, (0, 255, 0), 2) 
             cv2.circle(frame, (cX, cY), 5, (255, 0, 0), -1)
             cv2.line(frame, (cX, 0), (cX, frame.shape[0]), (255, 0, 0), 1)
             cv2.line(frame, (0, cY), (frame.shape[1], cY), (255, 0, 0), 1)
+
+            # Next code is here
+      
 ```
 
+
+After that, we move onto the actual algorithm. We begin with the initial alignment (which as of now doesn't actually work, and I'll explain in the code why that actually works in my favor). 
+
+```python
+           
+            # Calculates offset for turning and display info (the PID function does its own calculation)
+            if3 abs(offset) < 50:
+                position = "Centered"
+            elif3 offset < 0:
+                position = "Left"
+            else3:
+                position = "Right"
+            
+            turnSpeed = ballAnglePID(cX,CENTER_X) #Find the turn speed using the PID function
+
+            '''
+            Alignment algorithm:
+
+            Negative turn speed = right turn
+            Positive turn speed = left turn
+            if the turn speed is > 0, then turn left. If the offset is less than 100, then do a
+            pivot turn, where only one wheel rotates. If the offset is greater than 100, then do a
+            tank turn, where one wheel spins forward, the other spins backward (rotating in place)
+            Do then same for if the speed is < 0, except flip the turn direction
+            If speed is zero (the else statement), then stop the motors
+
+            '''
+            if4 turnSpeed > 0: # Left turn
+                if5 abs(offset) < 100:  # Pivot turn
+                    print(f"Turn speed: {turnSpeed}")
+                    rightMotor.forward(turnSpeed)
+                    leftMotor.stop()
+                    
+                else5: # Tank turn
+                    print(f"Turn speed: {turnSpeed}")
+                    rightMotor.forward(turnSpeed)
+                    leftMotor.backward(turnSpeed)
+            
+            elif4 turnSpeed < 0: # Right turn
+                if6 abs(offset) < 100:
+                    print(f"Turn speed: {turnSpeed}")
+                    leftMotor.forward(-turnSpeed) # The forward and backward methods only take in from 0 to 1, so the sign is flipped
+                    leftMotor.stop()
+                else6:
+                    print(f"Turn speed: {turnSpeed}")
+                    leftMotor.forward(-turnSpeed)
+                    rightMotor.backward(-turnSpeed)
+            
+            else4:
+                leftMotor.stop()
+                rightMotor.stop()
+            # Next code is here
+```
+
+The reason this code doesn't run is because immediately after, the "drive forward quickly" code runs, meaning the speed that it sets overrides the code here. This is good thing because otherwise the robot would constantly correct its orientation every single frame, and if the robot is extremely far away, then any slight unintended turn will cause the robot to realign over and over. This repition causes very little forward movement and forces the robot to shake in place
+
+The "drive forward quickly" is really simple and runs immediately after the initial turn 
+
+```python
+            '''
+            Basically just speed forward if distance (using the camera is greater than 35
+            When the ball is far, the camera is used. When it is close, the ultrasonic sensor is used.
+            If it is too close, the camera is used again
+            '''
+            if7 measureBallDistance(radius,offset) > 35:
+                rightMotor.forward(.7)
+                leftMotor.forward(.7)
+            else7:
+                # Next code is here
+```
+
+Once the robot is close enough to the ball, it performs another alignment (this time it actually works)
+
+```python
+
+                if8 turnSpeed > 0:
+                    centerCountFrames = 0
+                    if9 abs(offset) < 100:
+                        print(f"Turn speed: {turnSpeed}")
+                        rightMotor.forward(turnSpeed)
+                        leftMotor.stop()
+                        
+                    else9:
+                        print(f"Turn speed: {turnSpeed}")
+                        rightMotor.forward(turnSpeed)
+                        leftMotor.backward(turnSpeed)
+
+                elif8 turnSpeed < 0:
+                    centerCountFrames = 0
+                    if10 abs(offset) < 100:
+                        print(f"Turn speed: {turnSpeed}")
+                        leftMotor.forward(-turnSpeed)
+                        leftMotor.stop()
+
+                    else10:
+                        print(f"Turn speed: {turnSpeed}")
+                        leftMotor.forward(-turnSpeed)
+                        rightMotor.backward(-turnSpeed)
+
+                else8:
+                    leftMotor.stop()
+                    rightMotor.stop()
+```
 
 
 Suprises about the project so far
