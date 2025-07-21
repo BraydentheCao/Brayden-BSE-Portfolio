@@ -132,14 +132,15 @@ What is it?
 **The algorithm is seperated into two parts: A PID function that takes in the current and target position and returns speed between -1 and 1 & a main code that handles what to do with this speed given a certain offset. Keep in mind the motors can hold take in a speed between 0 and**
 
 
-How does the PID algorithm work?
+How does the PID function work?
+
 - The PID function, called ballAnglePID, takes in two parameters: Current x-coordinate of the ball's center and target x-coordinate. Using these two parameters, it calculates the current error. PID works by adding together three different variables, P (proportional), I (integral), and D (derivative) to calculate speed (speed = P + I + D).
 - Do note that PID is sign sensitive, meaning negative and postiive are treated differently, and the output can be positive or negative 
 - P uses the current error mulitplied by some constant (kd). If the ball is say 100 pixels away from the center, then P will be kd*100
 - I accumulates the total error over time mulitplied by some constant (ki). It essential checks to make sure the error over time cancels itself out, or in other words, it makes sure that the actual value is approaching the target value over time. For the purposes of my function, it is not too important
 - D finds the difference between the current and previous error, then multiplies it by some constant (kd)
 
-_____
+
 Here is the def ballAnglePID function code:
 
 
@@ -187,7 +188,52 @@ def ballAnglePID(current, target):
         return 0
 ```
 ---
+
+How does the code use the PID rotation function?
+
+- (Talk about just the handling of the speed, like just the "do initial alignment" code)
+
+### Distance tracking algorithms
+
+What is it?
+- Calulates the ball's distance from the robot
+- There are two functions that calculate distance: One that uses the camera, the other than uses the ultrasonic sensor
+
+How does it work?
+- The function that uses the ultrasonic sensor is pretty straightforward, while the one that uses the camera is slightly more complicated. I'm only going to cover the camera because of this
+- The camera can track distance using proportions due to the nature of how the pi camera works and how it has similar triangles. Essentially, we can have the variables f, R, D, and r. Here is what they stand for:
+  - R --> Radius of the red ball in cm (physically measured)
+  - D --> Distance of the ball from the camera (we are trying to find this value)
+
+### Entire tracking algorithm  
+
+  Puesdo code:
+  
+  PID turn function
+  ball distance function using camera
+  ball distance function using ultrasonic sensor
+
+  Looping code:
+    Calculate current X position of the ball's center
+    Calculate turnSpeed using PID turn function
+    if ball is detected:
+      Do initial alignment (I don't think this runs as intended right now, although I think that works in my favor)
+      If ball distance is over 35: drive forward quickly
+      else: 
+        Rotate robot until algined, stop when aligned
+        If robot has been stopped for long enough:
+          Align the robot's distance with the ball
+          Once done, stop the robot completely
+    else: spin in place
+
+
+- In English, here's how the whole algorithm works:
+  - For one, there are two other functions, one tracks ball distance with camera, the other tracks distance with the ultrasonic sensor
+  - 
+
 Suprises about the project so far
+
+
 
 Challanges (there were many!)
 
