@@ -126,8 +126,57 @@ What is it?
 - Goal: Rotate the robot such that the ball is in the center
 
 How does it work?
-- The algorithm is seperated into two parts: A PID function that takes in the current and target position and returns speed & a main code that handles what to do with this speed given a certain offset
-- The PID function, called ballAnglePID, takes in two parameters: Current x-coordinate of the ball's center and target x-coordinate. Using these two parameters, it calculates the current error. PID works by adding together three different variables, P (proportional), I (integral), and D (derivative). P uses the current 
+- The algorithm is seperated into two parts: A PID function that takes in the current and target position and returns speed between -1 and 1 & a main code that handles what to do with this speed given a certain offset. Keep in mind the motors can hold take in a speed between 0 and 1
+- The PID function, called ballAnglePID, takes in two parameters: Current x-coordinate of the ball's center and target x-coordinate. Using these two parameters, it calculates the current error. PID works by adding together three different variables, P (proportional), I (integral), and D (derivative) to calculate speed (speed = P + I + D).
+- Do note that PID is sign sensitive, meaning negative and postiive are treated differently, and the output can be positive or negative 
+- P uses the current error mulitplied by some constant (kd). If the ball is say 100 pixels away from the center, then P will be kd*100
+- I accumulates the total error over time mulitplied by some constant (ki). It essential checks to make sure the error over time cancels itself out, or in other words, it makes sure that the actual value is approaching the target value over time. For the purposes of my function, it is not too important
+- D finds the difference between the current and previous error, then multiplies it by some constant (kd)
+- Here is the def ballAnglePID function code:
+
+```python
+def ballAnglePID(current, target): 
+    global prevErrorA, curErrorA, iErrorA # A lot of the variables have the letter "a" at the end because originally I intended to make another PID function, but decided not to
+
+    if abs(current - target) < 50: # 
+       return 0
+
+    curErrorA = 0.0015625*2*(target - current)
+
+    # The curError is multipled by 0.0015625*2 since the parameter "current" ranges from 0 to 640 (each frame is 640 pixels wide)
+    and the possible return values can only be between -1 and 1. Basically we are translating an error between -320 to 320 all the
+    way down to -1 to 1
+
+    kp = 0.5 # Proportional gain
+    kd = 0.1  # Derivative gain
+    ki = 0.0000000001  # Integral gain. Generally has a very small value
+
+    dError = curErrorA - prevErrorA # This is "current - previous error" calculation
+    iErrorA += curErrorA  # Integral error can be implemented if needed
+
+    P = kp * curErrorA
+    I = ki * iErrorA
+    D = kd * dError 
+    
+    prevErrorA = curErrorA
+    speed = P + D # I decided not to include the "I" variable
+
+    # This if statement does two things:
+    # 1: If speed is outside of the -1 to 1 range, return a speed of 0
+    # 2: If the speed is below 0.4, return 0.4. This is because below 0.4, the robot won't move. Same applies for if the speed is negative
+
+    if speed > -1 and speed < 1:
+        if speed < 0.4 and speed > 0:   
+            return 0.4
+        elif speed > -0.4 and speed < 0:
+            
+            return -0.4
+        else:
+            return speed
+    else:
+        print("out of bounds")
+        return 0
+```
 
 Suprises about the project so far
 
