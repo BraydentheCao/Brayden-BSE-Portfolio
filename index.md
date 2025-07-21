@@ -125,8 +125,9 @@ What is it?
 - Takes the pixel offset of the ball and calculates the speed needed to rotate to the ball
 - Goal: Rotate the robot such that the ball is in the center
 
-How does it work?
-- The algorithm is seperated into two parts: A PID function that takes in the current and target position and returns speed between -1 and 1 & a main code that handles what to do with this speed given a certain offset. Keep in mind the motors can hold take in a speed between 0 and 1
+The algorithm is seperated into two parts: A PID function that takes in the current and target position and returns speed between -1 and 1 & a main code that handles what to do with this speed given a certain offset. Keep in mind the motors can hold take in a speed between 0 and 
+
+How does the PID algorithm work?
 - The PID function, called ballAnglePID, takes in two parameters: Current x-coordinate of the ball's center and target x-coordinate. Using these two parameters, it calculates the current error. PID works by adding together three different variables, P (proportional), I (integral), and D (derivative) to calculate speed (speed = P + I + D).
 - Do note that PID is sign sensitive, meaning negative and postiive are treated differently, and the output can be positive or negative 
 - P uses the current error mulitplied by some constant (kd). If the ball is say 100 pixels away from the center, then P will be kd*100
