@@ -357,9 +357,19 @@ The "drive forward quickly" is really simple and runs immediately after the init
 Once the robot is close enough to the ball, it performs another alignment (this time it actually works)
 
 ```python
+                '''
+                What you'll notice is that this code is basically the same as before, with the only different being
+                the existence of a counter variable called "centerCountFrames". This variable basically makes sure
+                that the robot has been centered (offset is > -50 and < 50) for enough frames (or in other words
+                enough time). This is because the code immediately following this is the code that adjusts the
+                robot's distance to the ball. Just like how the alignment code doesn't actually run because there is
+                no time delay between setting one speed and then another, the same issue occurs here. If there is
+                no time delay between the motors stopping and the distance alignment, then the motors won't actually
+                stop, causing an overshoot and the shaking issue to occur again
+                '''
 
                 if8 turnSpeed > 0:
-                    centerCountFrames = 0
+                    centerCountFrames = 0 # If the robot has to align again, the counter resets
                     if9 abs(offset) < 100:
                         print(f"Turn speed: {turnSpeed}")
                         rightMotor.forward(turnSpeed)
@@ -385,6 +395,8 @@ Once the robot is close enough to the ball, it performs another alignment (this 
                 else8:
                     leftMotor.stop()
                     rightMotor.stop()
+                    centerCountFrames += 1 # The "time delay" uses the number frames instaed of an actual time.sleep 
+                # Next code is here
 ```
 
 
