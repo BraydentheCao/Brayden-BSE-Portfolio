@@ -3,7 +3,7 @@ description: "A showcase of my projects"
 baseurl: "/Brayden-BSE-Portfolio" # leave this empty if your repo is username.github.io
 url: "https://braydenthecao.github.io/Brayden-BSE-Portfolio/"
 
-theme: "minimal-mistakes-jekyll"
+remote_theme: "mmistakes/minimal-mistakes"
 
 plugins:
   - jekyll-include-cache
