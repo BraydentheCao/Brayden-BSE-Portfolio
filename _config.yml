@@ -1,5 +1,5 @@
-remote_theme: pages-themes/midnight@v0.2.0
+title: Millidocs Portfolio
+description: A docs-inspired layout with search and dark styling
+remote_theme: alex-shpak/millidocs
 plugins:
   - jekyll-remote-theme
-title: Your Portfolio
-description: A dark, stylish Jekyll site
