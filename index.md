@@ -42,7 +42,7 @@ I've also accomplished:
 - An in progress addition of tracking the ball's distance with the camera using the pinhole camera model
 - Redoing the wiring and layout of the electronics to be more compact
 - Switching around the electrical componenets for better optimization
-
+---
 ## Technical details
 
 ### Streaming with the camera
@@ -50,14 +50,14 @@ I've also accomplished:
 What is it? 
 - A live video from my robot's raspberry pi camera 
 
+
 How does it work? 
 - A function called generate_frames() captures camera frames, processes them, encodes them as JPEG, and streams them using an HTTP format (multipart/x-mixed-replace).
 - /route serves an HTML page (basically html embedded into my python code), which shows the live video.
 - /video_feed route streams the processed video as a continuous sequence of JPEG images, simulating a video feed in the browser.
 - The app.run() function starts a local web server on port 5000, so any device on the network can view the stream at http://<raspberry-pi-ip>:5000/
 - Methods such as cv2.putText(...) allow information and text to be displayed and updated within the video
-
-
+---
 ### Enabling the camera to track the ball
 
 What is it? 
@@ -120,7 +120,7 @@ def generate_frames(): # Runs the track_red_ball() function
         ret, buffer = cv2.imencode('.jpg', frame)
         jpg_frame = buffer.tobytes()
 ```
-
+---
 
 ### PID rotation algorithm
 
