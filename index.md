@@ -18,7 +18,18 @@ For your final milestone, explain the outcome of your project. Key details to in
 - A summary of key topics you learned about
 - What you hope to learn in the future after everything you've learned at BSE
 
+# What you've accomplished since your previous milestone
+- 
 
+# What your biggest challenges and triumphs were at BSE
+
+# A summary of key topics you learned about
+
+I learned a vast amount of skills, from computer vision, web sockets, hand gesture recognition, JSON, PID, and surface modeling in Onshape. To begin, I learned extensively about computer vision from the base project, where I used techniques such as HSV conversion, contouring, centriods, and morphological operations (such as dilate and erode). I added PID controls afterward, bridging my understanding of calculus with a real world application. My first modification was very CAD focused, where I learned how to make more organic curves using bridging curves and surface modeling. My second modification was very software focused, were I learned how to use hand gesture recognition software to determine the angle and length of my index finger. In this modification, I also learned how to web sockets to communicate the information (using JSON objects) about my hand from my computer to my raspberry pi.   
+
+# What you hope to learn in the future after everything you've learned at BSE
+
+# Technical summary
 
 # Second Milestone: PID, camera web streaming, ball tracking, camera distance tracking, and finished project
 
@@ -132,7 +143,7 @@ What is it?
 - Goal: Rotate the robot such that the ball is in the center
 
 
-**The algorithm is seperated into two parts: A PID function that takes in the current and target position and returns speed between -1 and 1 & a main code that handles what to do with this speed given a certain offset. Keep in mind the motors can hold take in a speed between 0 and**
+**The algorithm is seperated into two parts: A PID function that takes in the current and target position and returns speed between -1 and 1 & a main code that handles what to do with this speed given a certain offset. Keep in mind the motors can have a speed between 0 and 1**
 
 
 How does the PID function work?
@@ -337,7 +348,7 @@ After that, we move onto the actual algorithm. We begin with the initial alignme
             # Next code is here
 ```
 
-The reason this code doesn't run is because immediately after, the "drive forward quickly" code runs, meaning the speed that it sets overrides the code here. This is good thing because otherwise the robot would constantly correct its orientation every single frame, and if the robot is extremely far away, then any slight unintended turn will cause the robot to realign over and over. This repition causes very little forward movement and forces the robot to shake in place
+The reason this code doesn't run is because it's immediately overriden by the "drive forward quickly" code. This is good actually a good thing because otherwise the robot would constantly correct its orientation every frame, and if the robot is extremely far away, any slight unintended turn will cause the robot to realign over and over again. This repitition causes very little forward movement and forces the robot to shake in place
 
 The "drive forward quickly" is really simple and runs immediately after the initial turn 
 
@@ -358,14 +369,12 @@ Once the robot is close enough to the ball, it performs another alignment (this 
 
 ```python
                 '''
-                What you'll notice is that this code is basically the same as before, with the only different being
-                the existence of a counter variable called "centerCountFrames". This variable basically makes sure
-                that the robot has been centered (offset is > -50 and < 50) for enough frames (or in other words
-                enough time). This is because the code immediately following this is the code that adjusts the
-                robot's distance to the ball. Just like how the alignment code doesn't actually run because there is
-                no time delay between setting one speed and then another, the same issue occurs here. If there is
-                no time delay between the motors stopping and the distance alignment, then the motors won't actually
-                stop, causing an overshoot and the shaking issue to occur again
+                What you’ll notice is that this code is basically the same as before, with the only difference being
+                the addition of a counter variable called centerCountFrames. This variable just makes sure the robot
+                has been centered (offset between -50 and 50) for enough frames (essentially enough time). That’s
+                important because the next block of code handles adjusting the robot’s distance to the ball. Just like
+                before, if there’s no time delay between one movement and the next (like stopping and then adjusting
+                distance), the motors don’t actually stop. That causes overshooting and brings back the same shaking issue.
                 '''
 
                 if8 turnSpeed > 0:
