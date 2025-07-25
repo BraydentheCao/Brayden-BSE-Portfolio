@@ -20,7 +20,7 @@ For your final milestone, explain the outcome of your project. Key details to in
 
 ## What you've accomplished since your previous milestone
 - The first accomplishment I had was creating a custom mount for all the differnt electrical components. This mount has organic curves to branch between the screw holes and the minimalist mounting structure. It weighs just 25 g, holding a raspberry pi, pi camera, pi fan, ultrasonic sensor, motor driver, and breadboard
-- Another accomplishment I had was creating a mount  
+- Another accomplishment I had was adding gesture control to my robot. It works by running mediapipe on my computer to recognize 21 different points on my hand, computing the angle and length of my index finger, then using web sockets to transmit JSON objects encoded with the hand data 
 
 ## What your biggest challenges and triumphs were at BSE
 
