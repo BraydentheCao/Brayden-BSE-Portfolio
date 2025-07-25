@@ -18,18 +18,18 @@ For your final milestone, explain the outcome of your project. Key details to in
 - A summary of key topics you learned about
 - What you hope to learn in the future after everything you've learned at BSE
 
-# What you've accomplished since your previous milestone
+## What you've accomplished since your previous milestone
 - 
 
-# What your biggest challenges and triumphs were at BSE
+## What your biggest challenges and triumphs were at BSE
 
-# A summary of key topics you learned about
+## A summary of key topics you learned about
 
 I learned a vast amount of skills, from computer vision, web sockets, hand gesture recognition, JSON, PID, and surface modeling in Onshape. To begin, I learned extensively about computer vision from the base project, where I used techniques such as HSV conversion, contouring, centriods, and morphological operations (such as dilate and erode). I added PID controls afterward, bridging my understanding of calculus with a real world application. My first modification was very CAD focused, where I learned how to make more organic curves using bridging curves and surface modeling. My second modification was very software focused, were I learned how to use hand gesture recognition software to determine the angle and length of my index finger. In this modification, I also learned how to web sockets to communicate the information (using JSON objects) about my hand from my computer to my raspberry pi.   
 
-# What you hope to learn in the future after everything you've learned at BSE
+## What you hope to learn in the future after everything you've learned at BSE
 
-# Technical summary
+## Technical summary
 
 # Second Milestone: PID, camera web streaming, ball tracking, camera distance tracking, and finished project
 
