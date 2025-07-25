@@ -19,7 +19,8 @@ For your final milestone, explain the outcome of your project. Key details to in
 - What you hope to learn in the future after everything you've learned at BSE
 
 ## What you've accomplished since your previous milestone
-- 
+- The first accomplishment I had was creating a custom mount for all the differnt electrical components. This mount has organic curves to branch between the screw holes and the minimalist mounting structure. It weighs just 25 g, holding a raspberry pi, pi camera, pi fan, ultrasonic sensor, motor driver, and breadboard
+- Another accomplishment I had was creating a mount  
 
 ## What your biggest challenges and triumphs were at BSE
 
