@@ -24,11 +24,7 @@ For your final milestone, explain the outcome of your project. Key details to in
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/u8KgakuqSV4?si=qzD20MOVRrHcwcu-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-For your second milestone, explain what you've worked on since your previous milestone. You can highlight:
-- Technical details of what you've accomplished and how they contribute to the final goal
-- What has been surprising about the project so far
-- Previous challenges you faced that you overcame
-- What needs to be completed before your final milestone 
+<hr style="height:3px;border:none;background-color:#ccc;">
 
 ## Technical summary 
 
@@ -42,7 +38,7 @@ I've also accomplished:
 - An in progress addition of tracking the ball's distance with the camera using the pinhole camera model
 - Redoing the wiring and layout of the electronics to be more compact
 - Switching around the electrical componenets for better optimization
----
+
 ## Technical details
 
 ### Streaming with the camera
@@ -57,7 +53,9 @@ How does it work?
 - /video_feed route streams the processed video as a continuous sequence of JPEG images, simulating a video feed in the browser.
 - The app.run() function starts a local web server on port 5000, so any device on the network can view the stream at http://<raspberry-pi-ip>:5000/
 - Methods such as cv2.putText(...) allow information and text to be displayed and updated within the video
----
+
+<hr style="height:3px;border:none;background-color:#ccc;">
+
 ### Enabling the camera to track the ball
 
 What is it? 
@@ -468,124 +466,44 @@ Honestly I used to think I didn't like coding nearly as much, but I have been mi
 
 Challanges (there were many!)
 
-Question: Why isn't my robot accurately rotating to the ball even after adding PID?
+1: PID Offset Handling
 
-1: Before, the PID function would correct for an offset of exactly 0. 
-I changed the PID function to have an if statement that returns as speed of 0
-if the offset is between -50 and 50. Correcting for a perfect offset of 0 is
-nearly impossible, and robot will just shake in place 
+Originally, the PID function corrected for an offset of exactly 0, which caused the robot to jitter in place. I modified it so that if the offset is between -50 and 50, it returns a speed of 0—making it more stable when centered.
 
-2: Below a certain speed, the motors would not move at all, as there just wasn't 
-enough torque to overcome the friction of the wheels and the floor. I decided to 
-test for a minimum speed, and if the speed was below that, I would return a speed
-of 0.3 or -0.3, depending on the direction of the offset. This way, the robot
+2: Minimum Motor Speed (Floor Speed)
 
-This then cause another problem: The robot floor speed was too high 
-(0.5 to be exact for turning)
+The motors wouldn't move at low speeds due to friction, so I added a minimum speed: 0.3 or -0.3 based on offset direction. However, this “floor speed” of 0.5 for turning was too high and caused the robot to overshoot the target window.
 
-The extremely high floor speed only exacerbated the issue. For example, 
-if the robot was slightly offset, the high motor speed floor would 
-cause the robot to move at a speed that was too high, causing it to 
-overshoot the target window of an offset of -50 to 50. 
+To fix this, I:
 
-My goal at that point was what can I do to decrease the floor speed of 
-the motors?
+- Switched from carpet to a slippery surface (poster board), lowering floor speed to ~0.4.
+- Swapped wheel motors (no effect).
+- Powered the L298n motor driver directly from the battery pack (no effect).
+- Switched to an L9110s motor driver, but overshooting persisted.
 
+Eventually, I discovered the real issue: the added battery pack weight increased friction, requiring more torque. Removing it brought the floor speed down to 0.3, which was better—but not perfect.
 
-Since I was testing everything on my carpeted floor, I also thought to swap to a 
-floor that was more slippery, as that would also decrease the floor speed needed 
-to move the robot. I decided on using poster board as the floor, as I had some 
-laying around. This helped by decreasing the floor speed to about 0.4
+Before/After Summary:
 
-I retested the PID with this new floor, however issues with the overshooting kept 
-occuring, and also the robot would move backward for some reason.
+Before: L298n + battery pack, carpet → floor speed = 0.5
+After: L9110s + powered from Pi, poster board → floor speed = 0.3
 
-As such, I decided to keep working at decreasing the floor speed. The next option 
-I thought could work was to swap the wheel motors in case that would decrease the 
-floor speed. When that didn't work, I tried hooking up the motor driver I was using 
-at the time, the L298n, to the battery pack, as I thought the increased voltage (+1V) 
-would help increase torque.
+Also learned: motor drivers need a common ground with the Pi to function properly.
 
-Unfortunately, that didn't work either, and I was still getting the same
-issue of the robot overshooting. I then suspected it could be due to the fact 
-that I was using an L298n instead of an L9110s, which I suspected
-was causing the voltage to drop too low and as a result increase the floor
-speed for the motors (L298n have a 2V drop, L9110s have a 0.6-1.2V drop). 
-However, after testing with the L9110s, I found that the REAL issue 
-(for the high motor floor speed) was actually that the battery pack I added earlier 
-was adding additional weight, enough to where the robot would need a higher floor 
-speed to move. This then reduce the motor speed floor to about 0.3, which was a 
-huge improvement from before, but still not enough to stop the overshooting.
+3: Slower Turning When Near Center
 
-At that point, I suspected there was another issue at play that wouldn't be 
-fixed just by reducing the floor speed.
+To reduce overshooting, I made the robot turn more slowly when the offset is between -100 and 100. Instead of turning both wheels, it now spins just one motor—this reduced heading speed and helped stay within bounds. However, the robot sometimes moved even when within the -50 to 50 “stop zone.”
 
-But before I explain exactly what I changed, here's a before and after (TLDR basically)
-of the floor speed:
+4: Fixing the Final Overshoot
 
-The set up I ended up using was an L9110s motor driver, and directly 
-connecting the motor driver power to the pi, where previously it was an L298n 
-powered by the battery pack. I also changed the ground to be cardboard instead of
-the carpet 
-
-This reduced the floor speed from 0.5 to 0.3  
-
-Another thing I learned is that the motor drivers actually need a ground pin connection
-to the pi, otherwise they will not work properly.
-
-3: The next thing I implemented was changing the nature of the turn if the offset was between
--100 and 100. Previously, the robot would only turn in place regardless of the offset, however, 
-this would cause the robot to overshoot even with the 0.3 floor speed. As such, I decided to 
-create single wheel turns once the robot was within the -100 to 100 offset range. In other words,
-instead of apply the return speed to both motors, I would apply the speed to one motor and stop 
-the other motor. This way, the heading of the robot would turn at a slower speed.
-
-This helped the robot significantly with not overshooting, however this was another issue I ran into,
-which was the robot would suddendly start running again even if the offset was within the -50 to 50 
-offset window
-
-4: The final thing I changed was adding just three lines of code to the if else statement for when the
-track_red_ball function. Essentially, the code before would work like this:
-
-ballAnglePID function (returns speed):
-
-...(more code here)...
-
-return 0 if offset is between -50 and 50
-return computed speed if offset is not between -50 and 50 with a floor of 0.3 or -0.3 
-
-...(more code here)...
-
-
-track_red_ball function (runs the PID function and controls the motors):
-
-...(more code here)...
-
-find center of ball
-speed = run ballAnglePID function
-if speed > 0
-    Turn left
-elif speed < 0
-    Turn right
-
-...(more code here)...
-
-
-What you notice is that there is no part of this if statement that computes for a speed of 0
-and then stops the motors. 
-
-And so I added this following code to the end of the if else statemnet 
-
-else:
-    stop motors
-
-Once this final step was done, I tuned the variables just slightly, and then the PID control
-was working near perfectly, and the robot was able to accurately track the ball without 
-overshooting or running away.
+The final issue was that the code never explicitly handled a speed of 0 in the track_red_ball function. So I added a clause: if the PID returns 0, the robot now stops both motors. This fixed the last overshoot bug.
 '''
 
-Final milestone plans
+## Final milestone plans
 
+I plan to make two different extensions: A 3D printed mount for all my parts and gesture control
+
+The 3D print I would like 
 
 
 # First Milestone - Assemble the robot and add working ultrasonic sensors
