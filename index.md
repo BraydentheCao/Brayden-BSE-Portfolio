@@ -24,7 +24,8 @@ For your final milestone, explain the outcome of your project. Key details to in
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/u8KgakuqSV4?si=qzD20MOVRrHcwcu-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-<hr style="height:3px;border:none;background-color:#ccc;">
+<hr style="height:1px;border:none;background-color:#ccc;">
+
 
 ## Technical summary 
 
@@ -38,6 +39,7 @@ I've also accomplished:
 - An in progress addition of tracking the ball's distance with the camera using the pinhole camera model
 - Redoing the wiring and layout of the electronics to be more compact
 - Switching around the electrical componenets for better optimization
+
 
 ## Technical details
 
@@ -54,7 +56,8 @@ How does it work?
 - The app.run() function starts a local web server on port 5000, so any device on the network can view the stream at http://<raspberry-pi-ip>:5000/
 - Methods such as cv2.putText(...) allow information and text to be displayed and updated within the video
 
-<hr style="height:2px;border:none;background-color:#ccc;">
+<hr style="height:1px;border:none;background-color:#ccc;">
+
 
 ### Enabling the camera to track the ball
 
@@ -70,6 +73,7 @@ How does it work?
 - Now that there is an hsv, contouring is used to outline the white pixels in the hsv frame (aka the ball), and this outline is then displayed on the web streaming of the camera
 - To find the center, the average x and y coordinate of every contour is used. This center point of the ballcan then be compared to the actual center of the camera to find the x and y offset of the ball (we care about the x offset only because we can control the left and right position of the ball by turning)
 - This offset information then becomes useful input data for the rotation PID 
+
 
 Code (reduced)
 
@@ -118,7 +122,8 @@ def generate_frames(): # Runs the track_red_ball() function
         ret, buffer = cv2.imencode('.jpg', frame)
         jpg_frame = buffer.tobytes()
 ```
----
+<hr style="height:1px;border:none;background-color:#ccc;">
+
 
 ### PID rotation algorithm
 
@@ -191,11 +196,8 @@ def ballAnglePID(current, target):
         print("out of bounds")
         return 0
 ```
----
+<hr style="height:1px;border:none;background-color:#ccc;">
 
-How does the code use the PID rotation function?
-
-- (Talk about just the handling of the speed, like just the "do initial alignment" code)
 
 ### Distance tracking algorithms
 
