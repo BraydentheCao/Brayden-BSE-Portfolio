@@ -18,15 +18,23 @@ For your final milestone, explain the outcome of your project. Key details to in
 - A summary of key topics you learned about
 - What you hope to learn in the future after everything you've learned at BSE
 
-## What you've accomplished since your previous milestone
+## What you've accomplished since your previous milestoe
+
 - The first accomplishment I had was creating a custom mount for all the differnt electrical components. This mount has organic curves to branch between the screw holes and the minimalist mounting structure. It weighs just 25 g, holding a raspberry pi, pi camera, pi fan, ultrasonic sensor, motor driver, and breadboard
-- Another accomplishment I had was adding gesture control to my robot. It works by running mediapipe on my computer to recognize 21 different points on my hand, computing the angle and length of my index finger, then using web sockets to transmit JSON objects encoded with the hand data 
+- Another accomplishment I had was adding gesture control to my robot. It works by running mediapipe on my computer to recognize 21 different points on my hand, computing the angle and length of my index finger. It then uses web sockets to transmit JSON objects encoded with the hand data from my computer to the raspberry pi. The raspberry pi interprets this data with a motor control function, converting the angle reading and the length into motor speeds for the left and right motor
+- I added all of my code for the this project into its own github repository. When I was doing the gesture control extension, I had two windows of vscode open, one hosted on my computer, the other ssh ing into my raspberry pi. 
 
 ## What your biggest challenges and triumphs were at BSE
 
+Challenges:
+
+One challenge early on was getting the PID turning controls to be more smooth. I kept running into the issue of the robot overshooting 
+
+Triumphs: 
+
 ## A summary of key topics you learned about
 
-I learned a vast amount of skills, from computer vision, web sockets, hand gesture recognition, JSON, PID, and surface modeling in Onshape. To begin, I learned extensively about computer vision from the base project, where I used techniques such as HSV conversion, contouring, centriods, and morphological operations (such as dilate and erode). I added PID controls afterward, bridging my understanding of calculus with a real world application. My first modification was very CAD focused, where I learned how to make more organic curves using bridging curves and surface modeling. My second modification was very software focused, were I learned how to use hand gesture recognition software to determine the angle and length of my index finger. In this modification, I also learned how to web sockets to communicate the information (using JSON objects) about my hand from my computer to my raspberry pi.   
+I learned a vast amount of skills, from computer vision, web sockets, hand gesture recognition, JSON, PID, and surface modeling in Onshape. To begin, I learned extensively about computer vision from the base project, where I used techniques such as HSV conversion, contouring, centriods, and morphological operations (such as dilate and erode). I added PID controls afterward, bridging my understanding of calculus with a real world application. My first modification was very CAD focused, where I learned how to make more organic curves using bridging curves and surface modeling. My second modification was very software focused, were I learned how to use hand gesture recognition software to determine the angle and length of my index finger. In this modification, I also learned how to use web sockets to communicate the information (using JSON objects) about my hand from my computer to my raspberry pi.   
 
 ## What you hope to learn in the future after everything you've learned at BSE
 
