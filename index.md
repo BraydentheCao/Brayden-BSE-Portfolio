@@ -54,7 +54,7 @@ How does it work?
 - The app.run() function starts a local web server on port 5000, so any device on the network can view the stream at http://<raspberry-pi-ip>:5000/
 - Methods such as cv2.putText(...) allow information and text to be displayed and updated within the video
 
-<hr style="height:3px;border:none;background-color:#ccc;">
+<hr style="height:2px;border:none;background-color:#ccc;">
 
 ### Enabling the camera to track the ball
 
