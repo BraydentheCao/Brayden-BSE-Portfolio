@@ -18,17 +18,21 @@ For your final milestone, explain the outcome of your project. Key details to in
 - A summary of key topics you learned about
 - What you hope to learn in the future after everything you've learned at BSE
 
-## What you've accomplished since your previous milestoe
+## What you've accomplished since your previous milestone
 
 - The first accomplishment I had was creating a custom mount for all the differnt electrical components. This mount has organic curves to branch between the screw holes and the minimalist mounting structure. It weighs just 25 g, holding a raspberry pi, pi camera, pi fan, ultrasonic sensor, motor driver, and breadboard
-- Another accomplishment I had was adding gesture control to my robot. It works by running mediapipe on my computer to recognize 21 different points on my hand, computing the angle and length of my index finger. It then uses web sockets to transmit JSON objects encoded with the hand data from my computer to the raspberry pi. The raspberry pi interprets this data with a motor control function, converting the angle reading and the length into motor speeds for the left and right motor
+- Another accomplishment I had was adding gesture control to my robot. Using my computer's web camera, the gesture control works by running mediapipe on my computer to recognize 21 different points on my hand, computing the angle and length of my index finger. It then uses web sockets to transmit JSON objects encoded with the hand data from my computer to the raspberry pi. The raspberry pi interprets this data with a motor control function, converting the angle reading and the length into motor speeds for the left and right motor
 - I added all of my code for the this project into its own github repository. When I was doing the gesture control extension, I had two windows of vscode open, one hosted on my computer, the other ssh ing into my raspberry pi. 
 
 ## What your biggest challenges and triumphs were at BSE
 
 Challenges:
 
-One challenge early on was getting the PID turning controls to be more smooth. I kept running into the issue of the robot overshooting 
+One challenge early on was getting the PID turning controls to be more smooth. I kept running into the issue of the robot overshooting, and I fixed this by changing the turn to rotate only one wheel if the ball's offset from the center of the was within a certain range, where before it was always both wheels turning
+
+I ran into several challenges with GitHub. After finishing my base project, I created a repository to code from both my Raspberry Pi and computer. I accidentally committed my entire env folder—nearly 6000 files—which almost crashed my system, since env folders should stay local. I was also editing the same repo in two VS Code windows (one on the Pi, one on my computer), which led to commit conflicts when I wasn't careful about editing different files on each.
+
+As I was coding the web socket, I faced another error, which was where the flask (which is a way to stream my web cam on chrome using http requests) wouldn't run due to the web socket. This was because I had nested the two in a single thread of code, and the solution was to add threading to my code to run the web socket and flask in parallel and independently of each other.
 
 Triumphs: 
 
