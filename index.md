@@ -580,6 +580,8 @@ The very end of the algorithm is the display info
 
 Honestly I used to think I didn't like coding nearly as much, but I have been mistaken. I took a class last school year that made me assume this, however, this project has made me love coding again, especially working so much with the terminal. For some reason, I really like interacting with the terminal a lot, maybe because it feels almost like being a hacker
 
+<br>
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 ## Challanges (there were many!)
 
@@ -600,6 +602,9 @@ To fix this, I:
 
 Eventually, I discovered the real issue: the added battery pack weight increased friction, requiring more torque. Removing it brought the floor speed down to 0.3, which was better—but not perfect.
 
+<br>
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
+
 ## Before/After Summary:
 
 Before: L298n + battery pack, carpet → floor speed = 0.5
@@ -615,6 +620,9 @@ To reduce overshooting, I made the robot turn more slowly when the offset is bet
 
 The final issue was that the code never explicitly handled a speed of 0 in the track_red_ball function. So I added a clause: if the PID returns 0, the robot now stops both motors. This fixed the last overshoot bug.
 '''
+
+<br>
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 ## Final milestone plans
 
