@@ -168,7 +168,7 @@ def track_red_ball(frame):
   mask2 = cv2.inRange(hsv, lower_red2, upper_red2)
   mask = cv2.bitwise_or(mask1, mask2)
 
-  # Morphological opporations  
+  # Morphological operations  
   mask = cv2.erode(mask, None, iterations=2)
   mask = cv2.dilate(mask, None, iterations=2)
 
@@ -204,19 +204,21 @@ def generate_frames(): # Runs the track_red_ball() function
 
 ### PID rotation algorithm
 
+<br>
+
 #### What is it? 
-- Takes the pixel offset of the ball and calculates the speed needed to rotate to the ball
+- Takes the pixel offset of the ball and calculates the speed needed to rotate the robot so that it is in line with ball
 - Goal: Rotate the robot such that the ball is in the center
 
 
-**The algorithm is seperated into two parts: A PID function that takes in the current and target position and returns speed between -1 and 1 & a main code that handles what to do with this speed given a certain offset. Keep in mind the motors can have a speed between 0 and 1**
+**The algorithm is seperated into two parts: A PID function that takes in the current and target position and returns speed between -1 and 1 & the main code that handles what to do with this speed given a certain offset. Keep in mind the motors can have a speed between 0 and 1**
 
 <br>
 
 #### How does the PID function work?
 
-- The PID function, called ballAnglePID, takes in two parameters: Current x-coordinate of the ball's center and target x-coordinate. Using these two parameters, it calculates the current error. PID works by adding together three different variables, P (proportional), I (integral), and D (derivative) to calculate speed (speed = P + I + D).
-- Do note that PID is sign sensitive, meaning negative and postiive are treated differently, and the output can be positive or negative 
+- The PID function, called ballAnglePID, takes in two parameters: Current x-coordinate of the ball's center and target x-coordinate. Using these two parameters, it calculates the current error. PID works by adding together three different variables, P (proportional), I (integral), and D (derivative) to calculate speed (rotation = P + I + D).
+- Do note that PID is sign sensitive, meaning negative and postiive are treated differently, meaning the output can be positive or negative. Negative rotation values cause a right turn, and postive rotation vlaues cause a left turn. 
 - P uses the current error mulitplied by some constant (kd). If the ball is say 100 pixels away from the center, then P will be kd*100
 - I accumulates the total error over time mulitplied by some constant (ki). It essential checks to make sure the error over time cancels itself out, or in other words, it makes sure that the actual value is approaching the target value over time. For the purposes of my function, it is not too important
 - D finds the difference between the current and previous error, then multiplies it by some constant (kd)
@@ -282,6 +284,8 @@ def ballAnglePID(current, target):
 
 ### Distance tracking algorithms
 
+<br>
+
 #### What is it?
 
 - Calulates the ball's distance from the robot
@@ -290,7 +294,10 @@ def ballAnglePID(current, target):
 #### How does it work?
 
 The function that uses the ultrasonic sensor is pretty straightforward, while the one that uses the camera is slightly more complicated. I'm only going to cover the camera because of this
-The camera can track distance using proportions due to the nature of how the pi camera works and how it has similar triangles. Essentially, we can have the variables f, R, D, and r. Here is what they stand for:
+
+<br>
+
+The camera can track distance using proportions due to the nature of how the pi camera works and how it forms similar triangles. Different sides of the two similar triangles correspond to the variables f, R, D, and r. Here is what they stand for:
 
 - R --> Radius of the red ball in real life (physically measured in cm)
 - D --> Distance of the ball from the camera (we are trying to find this value)
@@ -328,23 +335,23 @@ def measureBallDistance(r, offsetP):
 ### Entire tracking algorithm  
 
   The code structure looks something like this:
-  
-  PID turn function
-  ball distance function using camera
-  ball distance function using ultrasonic sensor
+  <br>
+  PID turn function<br>
+  ball distance function using camera<br>
+  ball distance function using ultrasonic sensor<br>
 
-  Looping code:
-    Calculate current X position of the ball's center
-    Calculate turnSpeed using PID turn function
-    if ball is detected:
-      Do initial alignment (I don't think this runs as intended right now, although I think that works in my favor)
-      If ball distance is over 35: drive forward quickly
-      else: 
-        Rotate robot until algined, stop when aligned
-        If robot has been stopped for long enough:
-          Align the robot's distance with the ball
-          Once done, stop the robot completely
-    else: spin in place
+  Looping code:<br>
+    Calculate current X position of the ball's center<br>
+    Calculate turnSpeed using PID turn function<br>
+    if ball is detected:<br>
+      Do initial alignment (I don't think this runs as intended right now, although I think that works in my favor)<br>
+      If ball distance is over 35: drive forward quickly<br>
+      else: <br>
+        Rotate robot until algined, stop when aligned<br>
+        If robot has been stopped for long enough:<br>
+          Align the robot's distance with the ball<br>
+          Once done, stop the robot completely<br>
+    else: spin in place<br>
 
 <br>
 <hr style="height:1px;border:none;background-color:#ccc;"><br>
