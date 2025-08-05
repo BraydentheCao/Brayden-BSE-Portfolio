@@ -20,9 +20,11 @@ Custom mount: <a href="https://cad.onshape.com/documents/69cba9d53024b1578fc0d81
 
 ## What you've accomplished since your previous milestone
 
-- The first thing I accomplished was creating a custom mount for all the differnt electrical components. This mount has organic curves to branch between the screw holes and the minimalist mounting structure. It weighs just 25 g, holding a raspberry pi, pi camera, pi fan, ultrasonic sensor, motor driver, and breadboard
-- Another thing I accomplished was adding gesture control to my robot. Using my computer's web camera, the gesture control works by running mediapipe on my computer to recognize 21 different points on my hand, computing the angle and length of my index finger. It then uses web sockets to transmit JSON objects encoded with the hand data from my computer to the raspberry pi. The raspberry pi interprets this data with a motor control function, converting the angle reading and the length into motor speeds for the left and right motor. (This is run seperately from the ball tracking algorithm)
-- I added all of my code for the this project into its own github repository. When I was doing the gesture control extension, I had two windows of vscode open, one hosted on my computer, the other ssh ing into my raspberry pi. 
+The first thing I accomplished was creating a custom mount for all the differnt electrical components. This mount has organic curves to branch between the screw holes and the minimalist mounting structure. It weighs just 25 g, holding a raspberry pi, pi camera, pi fan, ultrasonic sensor, motor driver, and breadboard
+
+Another thing I accomplished was adding gesture control to my robot. Using my computer's web camera, the gesture control works by running mediapipe on my computer to recognize 21 different points on my hand, computing the angle and length of my index finger. It then uses web sockets to transmit JSON objects encoded with the hand data from my computer to the raspberry pi. The raspberry pi interprets this data with a motor control function, converting the angle reading and the length into motor speeds for the left and right motor. (This is run seperately from the ball tracking algorithm)
+
+I added all of my code for the this project into its own github repository. When I was doing the gesture control extension, I had two windows of vscode open, one hosted on my computer, the other ssh ing into my raspberry pi. 
 
 ## What your biggest challenges and triumphs were at BSE
 
