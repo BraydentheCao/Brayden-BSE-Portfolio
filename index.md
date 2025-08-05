@@ -150,7 +150,8 @@ How does it work?
 <br>
 <hr style="height:1px;border:none;background-color:#ccc;"><br>
 
-Code (directory: /Code/Tracking/baseProject.py)
+Code (directory: /Code/Tracking/baseProject.py)<br>
+Do note that the code blocks in this portfolio have comments that explain how the code works<br> 
 <a href="https://github.com/BraydentheCao/BSE_Code"> Link (in case you missed it)</a><br>
 
 ```python
