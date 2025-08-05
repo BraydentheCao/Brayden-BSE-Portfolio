@@ -673,10 +673,13 @@ The third challenge I faced was with controling the robot with the ultrasonic se
 <br>
 <hr style="height:3px;border:none;background-color:#ccc;"><br>
 
-## Schematics 
+# Schematics 
 <img width="717" height="762" alt="image" src="https://github.com/user-attachments/assets/4e5b79de-aa66-4abd-90b7-6870576d4a89" />
 
-## Code
+<br>
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
+
+# Code
 
 ```python
 import RPi.GPIO as GPIO
@@ -737,7 +740,9 @@ while True:
           leftMotor.forward(0)
           rightMotor.forward(0)
 ```
-<br><hr style="height:3px;border:none;background-color:#ccc;"><br>
+
+<br>
+<hr style="height:3px;border:none;background-color:#ccc;"><br>
 
 # Bill of Materials
 Here's where you'll list the parts in your project. To add more rows, just copy and paste the example rows below.
@@ -754,8 +759,9 @@ Don't forget to place the link of where to buy each component inside the quotati
 | DMM | What the item is used for | $11.00 | <a href="https://www.amazon.com/AstroAI-Digital-Multimeter-Voltage-Tester/dp/B01ISAMUA6"> Link </a> |
 | Champion sports ball | What the item is used for | $16.73 | <a href="https://www.amazon.com/Champion-Sports-Inch-Coated-Density/dp/B000KYTTYO"> Link </a> |
 | AA batteries | What the item is used for | $18.74 | <a href="https://www.amazon.com/Duracell-Coppertop-AA-Ingredients-Long-lasting/dp/B0035LCFNQ"> Link </a> |
-| USB power bank & cable | What the item is used for | $16.19 | <a href="https://www.amazon.com/SIXTHGU-Portable-Charger-Charging-Flashlight/dp/B0C7PHKKNK"> Link </a> |<br>
+| USB power bank & cable | What the item is used for | $16.19 | <a href="https://www.amazon.com/SIXTHGU-Portable-Charger-Charging-Flashlight/dp/B0C7PHKKNK"> Link </a> |
 
+<br>
 <hr style="height:3px;border:none;background-color:#ccc;"><br>
 
 # Other resources
