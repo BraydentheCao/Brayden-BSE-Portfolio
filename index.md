@@ -73,6 +73,9 @@ My expertise coming into this program is mechanical engineering, but even then, 
 
 I learned a vast amount of skills, from computer vision, web sockets, hand gesture recognition, JSON, PID, and surface modeling in Onshape. To begin, I learned extensively about computer vision from the base project, where I used techniques such as HSV conversion, contouring, centriods, and morphological operations (such as dilate and erode). I added PID controls afterward, bridging my understanding of calculus with a real world application. My first modification was very CAD focused, where I learned how to make more organic curves using bridging curves and surface modeling. My second modification was very software focused, were I learned how to use hand gesture recognition software to determine the angle and length of my index finger. In this modification, I also learned how to use web sockets to communicate the information (using JSON objects) about my hand from my computer to my raspberry pi.   
 
+<br>
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
+
 ## What you hope to learn in the future after everything you've learned at BSE
 
 For one, I hope to learn more about lower level code, such as C, and how they integrate with the physical componenets on a device. Using the terminal in VSCode, then on my raspberry pi, then on my computer's window powershell was mesmerizing as I dug deeper into directories in search of packages I installed. The best part? This is just the surface. If anything, I think it's the unknown, endlessness, and fundimental nature of computer engineering that makes me so intriguged by it. Adding code to a custom made mount is one thing, but digging into (and manipulating) how literal atoms interact with each other and how that translates into an entire screen that I can code on is something that genuinely blows my mind.
@@ -85,9 +88,6 @@ Beyond that, adding all of these different elements and fields of engineering in
 # Second Milestone: PID, camera web streaming, ball tracking, camera distance tracking, and finished project
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/u8KgakuqSV4?si=qzD20MOVRrHcwcu-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-<br>
-<hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 ## Technical summary 
 
@@ -603,7 +603,8 @@ The 3D print I would like to have both a case covering the entire robot and a mo
 
 For the gesture control, I'm think about potentially adding another pi and having it connect to a second camera for gesture control (not sure how the finger detection would work), although it is likely easier to just run it using my computer's webcam
 
-<hr style="height:3px;border:none;background-color:#ccc;">
+<br>
+<hr style="height:3px;border:none;background-color:#ccc;"><br>
 
 # First Milestone - Assemble the robot and add working ultrasonic sensors
 
@@ -613,13 +614,15 @@ For the gesture control, I'm think about potentially adding another pi and havin
 
 Currently, the robot is comprised of two motors, a raspberry pi, a L298n motor driver, a small breadboard, and two ultrasonic sensors. The image below contains a picture of the schematics with all of the different componenets and how they are powered and controlled electrically
 
-<hr style="height:1px;border:none;background-color:#ccc;">
+<br>
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 ## Technical summary 
 
 So far, I have assembled the base of the robot with motors and wheels, as well as all of the components previously mentioned, all of which are fully wired and fully functional. For example, I am able to pick up distance readings from both ultrasonic sensors. In addition, I also coded the robot to where it can continuously adjust it's position to be 8-10 cm away from an object by using the ultrasonic sensors and adjusting the speed of the motors accordingly. Currently this feature is only being tested on the left ultrasonic sensor and being applied to both motors for ease of testing 
 
-<hr style="height:1px;border:none;background-color:#ccc;">
+<br>
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 ## Challenges:
 
@@ -629,13 +632,15 @@ The second challenge I faced was with wiring the ultrasonic sensors. The ultraso
 
 The third challenge I faced was with controling the robot with the ultrasonic sensors. I was able to get the robot to move forward above 10 cm of distance (using the formula speed = 0.05*distance+0.4) and get the robot the move backward with a distance under 8 cm, however the issue was that robot would start ocillating between the forward and backwards motion likely due to the robot overshooting the intended distance. Another issue was below around a speed of 0.3-0.4, the robot wasn't able to spin its motors likely due to too low of a voltage and a lack of torque. Very likely I will have to use PID controls to assist with this:
 
-<hr style="height:1px;border:none;background-color:#ccc;">
+<br>
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 ## Plan to complete my project:
 - Attach the camera, code it, and get it to work with the ultrasonic sensors
 - After the base project is done, I would like to add a control aspect to the robot, such as using my hand in some way to control it.
 
-<hr style="height:1px;border:none;background-color:#ccc;">
+<br>
+<hr style="height:3px;border:none;background-color:#ccc;"><br>
 
 ## Schematics 
 <img width="717" height="762" alt="image" src="https://github.com/user-attachments/assets/4e5b79de-aa66-4abd-90b7-6870576d4a89" />
