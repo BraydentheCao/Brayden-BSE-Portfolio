@@ -668,10 +668,18 @@ Don't forget to place the link of where to buy each component inside the quotati
 | AA batteries | What the item is used for | $18.74 | <a href="https://www.amazon.com/Duracell-Coppertop-AA-Ingredients-Long-lasting/dp/B0035LCFNQ"> Link </a> |
 | USB power bank & cable | What the item is used for | $16.19 | <a href="https://www.amazon.com/SIXTHGU-Portable-Charger-Charging-Flashlight/dp/B0C7PHKKNK"> Link </a> |
 
-# Other Resources/Examples
-One of the best parts about Github is that you can view how other people set up their own work. Here are some past BSE portfolios that are awesome examples. You can view how they set up their portfolio, and you can view their index.md files to understand how they implemented different portfolio components.
-- [Example 1](https://trashytuber.github.io/YimingJiaBlueStamp/)
-- [Example 2](https://sviatil0.github.io/Sviatoslav_BSE/)
-- [Example 3](https://arneshkumar.github.io/arneshbluestamp/)
+# Other resources
+- [Using an ultrasonic distance sensor](https://projects.raspberrypi.org/en/projects/physical-computing/12)
+- [Raspberry Pi Pinout]([https://sviatil0.github.io/Sviatoslav_BSE/](https://pinout.xyz/pinout/pwm))
+- [Using picamera2 in virtual environments](https://arneshkumar.github.io/arneshbluestamp/)
+- [Mediapipe](https://github.com/google-ai-edge/mediapipe)
+- [Ultrasonic sensor dimensions](https://thepihut.com/blogs/raspberry-pi-tutorials/hc-sr04-ultrasonic-range-sensor-on-the-raspberry-pi)
+- [ArduCam dimensions](https://uk.robotshop.com/products/arducam-5-mp-mini-camera-ov5647-1080p-raspberry-pi)
 
-To watch the BSE tutorial on how to create a portfolio, click here.
+# Imported STEP files
+- [Raspberry Pi Camera](https://grabcad.com/library/raspberry-pi-camera-4/details?folder_id=7388609)
+- [L9110 Motor driver](https://grabcad.com/library/dc-motor-driver-l9110-1)
+- [Breadboard](https://grabcad.com/library/breadboard-23)
+- [Ultrasonic sensor](https://grabcad.com/library/hc-sr04-13)
+- [Raspberry pi fan](https://grabcad.com/library/fan-30x30x8mm-5v-2-pin-1)
+- [Raspberry pi 4 model B](https://grabcad.com/library/raspberry-pi-4-model-b-1)
