@@ -26,6 +26,11 @@ Another thing I accomplished was adding gesture control to my robot. Using my co
 
 I added all of my code for the this project into its own github repository. When I was doing the gesture control extension, I had two windows of vscode open, one hosted on my computer, the other ssh ing into my raspberry pi. 
 
+<hr style="height:1px;border:none;background-color:#ccc;">
+
+
+
+
 ## What your biggest challenges and triumphs were at BSE
 
 ### Challenges:
