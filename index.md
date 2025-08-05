@@ -47,7 +47,7 @@ The custom mount looks amazing! Initially I had this general idea for a custom m
 The branching nature of this mount was thought of somewhat beforehand, as I wanted the most minimalistic design possible using the least amount of material. During that time, I thought about how I could make organic branches that go directly from the mounting holes directly to the mounting pieces. After 7 versions, this is what I made (link is also at the top):
 
 
-<img width="964" height="709" alt="image" src="https://github.com/user-attachments/assets/e3e205ee-7eff-435c-ab9d-1c67b28b2129" />
+<img width="922" height="682" alt="image" src="https://github.com/user-attachments/assets/fc982f87-5c05-4ae5-844a-a93e856bd853" />
 
 
 With all of the electronic components, here is what it looks like
