@@ -46,6 +46,10 @@ As I was coding the web socket, I faced another error, which was where the flask
 While making the custom mount, I faced quite a few design challenges, but the biggest one by far was at the beginning, where I didn't actually have any dimensions for the acrylic base plate of my robot (there are none provided online unfortunately). More specifically, I didn't have any dimensions for the distances between any of the holes on the plate, meaning I had to test extensively to get all of the distances correct through trial and error. As you might expect, this took a lengthy amount of time, as I dimensions 10 different distances. I also early on ran into the issue of certain Onshape features (loft in this case) running into errors trying to generate the branches I wanted. As a result, I decided to look up how to create more customizable curves, which involved bridging curves and surface modeling. The process used nearly 10 times as many features, but the end result look incredible
 
 <br>
+<img width="256" height="451" alt="image" src="https://github.com/user-attachments/assets/62a3f375-7c18-4085-a46e-56055b367ffb" />
+<br>
+
+<br>
 <hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 ### Triumphs: 
