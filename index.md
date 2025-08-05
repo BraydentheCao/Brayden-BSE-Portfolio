@@ -12,7 +12,7 @@ A robot with a custom mount that tracks a ball using a raspberry pi camera and a
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/xLRqnBRs9Pk?si=PUBBMHvU97V0aWAF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 <br>
-## Links
+# **Links**
 
 Code: <a href="https://github.com/BraydentheCao/BSE_Code"> Link </a><br>
 Custom mount: <a href="https://cad.onshape.com/documents/69cba9d53024b1578fc0d810/w/c1cbd505540fad05171fcd8c/e/e5313dda26885e11e0ae25f9"> Link </a>
@@ -37,24 +37,27 @@ I added all of my code for the this project into its own github repository. When
 One challenge early on was getting the PID turning controls to be more smooth. I kept running into the issue of the robot overshooting, and I fixed this by changing the turn to rotate only one wheel if the ball's offset from the center of the was within a certain range, where before it was always both wheels turning
 <br>
 
-I ran into several challenges with GitHub. After finishing my base project, I created a repository to code from both my Raspberry Pi and computer. I accidentally committed my entire env folder—nearly 6000 files—which almost crashed my system, since env folders should stay local. I was also editing the same repo in two VS Code windows (one on the Pi, one on my computer), which led to commit conflicts when I wasn't careful about editing different files on each.
+I ran into several challenges with GitHub. After finishing my base project, I created a repository to code from both my Raspberry Pi and computer. I accidentally committed my entire env folder—nearly 6000 files—which almost crashed my system. I learned then that env folders should stay local. I was also editing the same repo in two VS Code windows (one on the Pi, one on my computer), which led to commit conflicts when I wasn't careful about not editing the same files in both windows.
 <br>
 
-As I was coding the web socket, I faced another error, which was where the flask (which is a way to stream my web cam on chrome using http requests) wouldn't run due to the web socket. This was because I had nested the two in a single thread of code, and the solution was to add threading to my code to run the web socket and flask in parallel and independently of each other.
+As I was coding the web socket, I faced another error, which was where the flask (which is a way to stream my web cam on chrome using http requests) wouldn't run due to the web socket processes taking place. This was because I had nested the two in a single thread of code, and the solution was to add threading to my code to run the web socket and flask in parallel and independently of each other.
 <br>
 
-While making the custom mount, I faced quite a few design challenges, but the biggest one by far was at the beginning, where I didn't actually have any dimensions for the acrylic base plate of my robot. More specifically, I didn't have any dimensions for the distances between any of the holes on the plate, meaning I had to test extensively to get all of the distances correct through trial and error. As you might expect, this took a lengthy amount of time, as I dimensions 10 different distances. I also early on ran into the issue of certain Onshape features (loft in this case) running into errors trying to generate the branches I wanted. As a result, I decided to look up how to create more customizable curves, and it involved bridging curves and surface modeling. The process took nearly 10 times as many features, but the end result look incredible
+While making the custom mount, I faced quite a few design challenges, but the biggest one by far was at the beginning, where I didn't actually have any dimensions for the acrylic base plate of my robot (there are none provided online unfortunately). More specifically, I didn't have any dimensions for the distances between any of the holes on the plate, meaning I had to test extensively to get all of the distances correct through trial and error. As you might expect, this took a lengthy amount of time, as I dimensions 10 different distances. I also early on ran into the issue of certain Onshape features (loft in this case) running into errors trying to generate the branches I wanted. As a result, I decided to look up how to create more customizable curves, which involved bridging curves and surface modeling. The process used nearly 10 times as many features, but the end result look incredible
 
 <br>
 <hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 ### Triumphs: 
 
-The gesture control works! The gesture control works by first recording my hand from my computer and tracking 21 different points on my hand (using mediapipe). It then calculates the relative length of my index finger using the base and tip of it. This value is divided its pixel length by my palm length to calculate the relative length. The algorithm also calculates the angle of my index finger. **In creating a relative length, moving my index finger forward and backward relative to my camera will actually change the speed of the robot, while moving my index finger left and right will change the direction**
+The gesture control works! Like mentioned before, the gesture control works by first recording my hand from my computer and tracking 21 different points on my hand (using mediapipe). What I didn't mention is that the algorithm then calculates the length of my index finger using the base and tip landmarks of it. This raw length value (converted to pixels) is divided by the pixel length of my palm to calculate a relative length. The algorithm also calculates the angle of my index finger. **In creating a relative length, moving my index finger forward and backward relative to my camera will actually change the speed of the robot, while moving my index finger left and right will change the direction**
+
 <br>
+
 The custom mount looks amazing! Initially I had this general idea for a custom mount around the end of milestone 2, since during that time I was using excessive tape and a hastily build mount to hold everything together. In fact during weeks 1 and 2, I had rebuilt this mount multiple times since it was just too messy initially. 
 
 The branching nature of this mount was thought of somewhat beforehand, as I wanted the most minimalistic design possible using the least amount of material. During that time, I thought about how I could make organic branches that go directly from the mounting holes directly to the mounting pieces. After 7 versions, this is what I made (link is also at the top):
+
 <br>
 
 <img width="922" height="682" alt="image" src="https://github.com/user-attachments/assets/fc982f87-5c05-4ae5-844a-a93e856bd853" />
@@ -65,13 +68,15 @@ With all of the electronic components, here is what it looks like
 <img width="911" height="598" alt="image" src="https://github.com/user-attachments/assets/4143e57c-5db0-4cc4-a202-30d0740e82cc" />
 
 My expertise coming into this program is mechanical engineering, but even then, this was definitely a challenging (and very fun) model to make.
+(Here's the link in case you missed it: <a href="https://cad.onshape.com/documents/69cba9d53024b1578fc0d810/w/c1cbd505540fad05171fcd8c/e/e5313dda26885e11e0ae25f9"> Link </a>)
+
 
 <br>
 <hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 ## A summary of key topics you learned about
 
-I learned a vast amount of skills, from computer vision, web sockets, hand gesture recognition, JSON, PID, and surface modeling in Onshape. To begin, I learned extensively about computer vision from the base project, where I used techniques such as HSV conversion, contouring, centriods, and morphological operations (such as dilate and erode). I added PID controls afterward, bridging my understanding of calculus with a real world application. My first modification was very CAD focused, where I learned how to make more organic curves using bridging curves and surface modeling. My second modification was very software focused, were I learned how to use hand gesture recognition software to determine the angle and length of my index finger. In this modification, I also learned how to use web sockets to communicate the information (using JSON objects) about my hand from my computer to my raspberry pi.   
+I learned a vast range of skills, including computer vision, web sockets, hand gesture recognition, JSON, PID, and surface modeling in Onshape. To begin, I learned extensively about computer vision from the base project, where I used techniques such as HSV conversion, contouring, centriods, and morphological operations (dilate and erode for example). I added PID controls afterward, bridging my understanding of calculus with a real world application. My first modification was very CAD focused, where I learned how to make more organic curves using bridging curves and surface modeling. My second modification was very software focused, were I learned how to use hand gesture recognition software to determine the angle and length of my index finger. In this modification, I also learned how to use web sockets to communicate the information (using JSON objects) about my hand from my computer to my raspberry pi.   
 
 <br>
 <hr style="height:1px;border:none;background-color:#ccc;"><br>
