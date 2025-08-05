@@ -1,5 +1,5 @@
 # Ball Tracking Robot
-Robot that tracks a ball using a raspberry pi camera and two ultrasonic sensors
+A robot with a custom mount that tracks a ball using a raspberry pi camera and an ultrasonic sensors that can also be controlled using hand gestures
 
 | Name | School | Major | Grade | 
 | -------- | -------- | -------- | -------- |
@@ -11,7 +11,7 @@ Robot that tracks a ball using a raspberry pi camera and two ultrasonic sensors
 # Final Milestone
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/xLRqnBRs9Pk?si=PUBBMHvU97V0aWAF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
+<br>
 ## Links
 
 Code: <a href="https://github.com/BraydentheCao/BSE_Code"> Link </a><br>
@@ -26,9 +26,8 @@ Another thing I accomplished was adding gesture control to my robot. Using my co
 
 I added all of my code for the this project into its own github repository. When I was doing the gesture control extension, I had two windows of vscode open, one hosted on my computer, the other ssh ing into my raspberry pi. 
 
-<hr style="height:1px;border:none;background-color:#ccc;">
-
-
+<br>
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 
 ## What your biggest challenges and triumphs were at BSE
@@ -36,21 +35,27 @@ I added all of my code for the this project into its own github repository. When
 ### Challenges:
 
 One challenge early on was getting the PID turning controls to be more smooth. I kept running into the issue of the robot overshooting, and I fixed this by changing the turn to rotate only one wheel if the ball's offset from the center of the was within a certain range, where before it was always both wheels turning
+<br>
 
 I ran into several challenges with GitHub. After finishing my base project, I created a repository to code from both my Raspberry Pi and computer. I accidentally committed my entire env folder—nearly 6000 files—which almost crashed my system, since env folders should stay local. I was also editing the same repo in two VS Code windows (one on the Pi, one on my computer), which led to commit conflicts when I wasn't careful about editing different files on each.
+<br>
 
 As I was coding the web socket, I faced another error, which was where the flask (which is a way to stream my web cam on chrome using http requests) wouldn't run due to the web socket. This was because I had nested the two in a single thread of code, and the solution was to add threading to my code to run the web socket and flask in parallel and independently of each other.
+<br>
 
 While making the custom mount, I faced quite a few design challenges, but the biggest one by far was at the beginning, where I didn't actually have any dimensions for the acrylic base plate of my robot. More specifically, I didn't have any dimensions for the distances between any of the holes on the plate, meaning I had to test extensively to get all of the distances correct through trial and error. As you might expect, this took a lengthy amount of time, as I dimensions 10 different distances. I also early on ran into the issue of certain Onshape features (loft in this case) running into errors trying to generate the branches I wanted. As a result, I decided to look up how to create more customizable curves, and it involved bridging curves and surface modeling. The process took nearly 10 times as many features, but the end result look incredible
+
+<br>
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 ### Triumphs: 
 
 The gesture control works! The gesture control works by first recording my hand from my computer and tracking 21 different points on my hand (using mediapipe). It then calculates the relative length of my index finger using the base and tip of it. This value is divided its pixel length by my palm length to calculate the relative length. The algorithm also calculates the angle of my index finger. **In creating a relative length, moving my index finger forward and backward relative to my camera will actually change the speed of the robot, while moving my index finger left and right will change the direction**
-
+<br>
 The custom mount looks amazing! Initially I had this general idea for a custom mount around the end of milestone 2, since during that time I was using excessive tape and a hastily build mount to hold everything together. In fact during weeks 1 and 2, I had rebuilt this mount multiple times since it was just too messy initially. 
 
 The branching nature of this mount was thought of somewhat beforehand, as I wanted the most minimalistic design possible using the least amount of material. During that time, I thought about how I could make organic branches that go directly from the mounting holes directly to the mounting pieces. After 7 versions, this is what I made (link is also at the top):
-
+<br>
 
 <img width="922" height="682" alt="image" src="https://github.com/user-attachments/assets/fc982f87-5c05-4ae5-844a-a93e856bd853" />
 
@@ -61,6 +66,8 @@ With all of the electronic components, here is what it looks like
 
 My expertise coming into this program is mechanical engineering, but even then, this was definitely a challenging (and very fun) model to make.
 
+<br>
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 ## A summary of key topics you learned about
 
@@ -72,12 +79,15 @@ For one, I hope to learn more about lower level code, such as C, and how they in
 
 Beyond that, adding all of these different elements and fields of engineering into a single project would be I something I would love to learn and experiences later on in my career. Bluestamp engineering has already given me an incredble opportunity at this, and I think continuing down this path into a major, say mechatronics or robotics, would be a dream come true.
 
+<br>
+<hr style="height:3px;border:none;background-color:#ccc;"><br>
+
 # Second Milestone: PID, camera web streaming, ball tracking, camera distance tracking, and finished project
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/u8KgakuqSV4?si=qzD20MOVRrHcwcu-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-<hr style="height:1px;border:none;background-color:#ccc;">
-
+<br>
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 ## Technical summary 
 
@@ -92,6 +102,8 @@ I've also accomplished:
 - Redoing the wiring and layout of the electronics to be more compact
 - Switching around the electrical componenets for better optimization
 
+<br>
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 ## Technical details
 
@@ -108,8 +120,8 @@ How does it work?
 - The app.run() function starts a local web server on port 5000, so any device on the network can view the stream at http://<raspberry-pi-ip>:5000/
 - Methods such as cv2.putText(...) allow information and text to be displayed and updated within the video
 
-<hr style="height:1px;border:none;background-color:#ccc;">
-
+<br>
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 ### Enabling the camera to track the ball
 
@@ -126,6 +138,8 @@ How does it work?
 - To find the center, the average x and y coordinate of every contour is used. This center point of the ballcan then be compared to the actual center of the camera to find the x and y offset of the ball (we care about the x offset only because we can control the left and right position of the ball by turning)
 - This offset information then becomes useful input data for the rotation PID 
 
+<br>
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 Code (reduced)
 
@@ -174,8 +188,9 @@ def generate_frames(): # Runs the track_red_ball() function
         ret, buffer = cv2.imencode('.jpg', frame)
         jpg_frame = buffer.tobytes()
 ```
-<hr style="height:1px;border:none;background-color:#ccc;">
 
+<br>
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 ### PID rotation algorithm
 
