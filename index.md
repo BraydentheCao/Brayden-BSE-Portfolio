@@ -12,6 +12,12 @@ Robot that tracks a ball using a raspberry pi camera and two ultrasonic sensors
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/xLRqnBRs9Pk?si=PUBBMHvU97V0aWAF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+##Links
+
+<a href="https://github.com/BraydentheCao/BSE_Code"> Code </a>
+<a href="https://cad.onshape.com/documents/69cba9d53024b1578fc0d810/w/c1cbd505540fad05171fcd8c/e/c34b87706353d3bb0c2503f3?renderMode=0&uiState=68915de9023e9a2be35abef6"> Custom mount </a>
+
+
 ## What you've accomplished since your previous milestone
 
 - The first thing I accomplished was creating a custom mount for all the differnt electrical components. This mount has organic curves to branch between the screw holes and the minimalist mounting structure. It weighs just 25 g, holding a raspberry pi, pi camera, pi fan, ultrasonic sensor, motor driver, and breadboard
@@ -30,7 +36,12 @@ As I was coding the web socket, I faced another error, which was where the flask
 
 ### Triumphs: 
 
-The gesture control works! The gesture control is a 
+The gesture control works! The gesture control works by first recording my hand from my computer and tracking 21 different points on my hand (using mediapipe). It then calculates the relative length of my index finger using the base and tip of it. This value is divided its pixel length by my palm length to calculate the relative length. The algorithm also calculates the angle of my index finger. All of these calculations run on my computer, and data is then transmitted to my pi, where then the pi calculates a speed for each motor to match the angle of my finger. The reason the relative length is used is because the this variable is magnitude constant for how fast the motors should spin. **In creating a relative length, moving my index finger forward and backward relative to my camera will actually change the speed of the robot, while moving my index finger left and right will change the direction**
+
+The custom mount looks amazing! Initially I had this idea around the end of milestone 2, since during that time I was using excessive tape and a hastily build mount to hold everything together. In fact during weeks 1 and 2, I had rebuilt this mount multiple times since it was just too messy initially. 
+The actual branching nature of this 
+
+<img width="1229" height="892" alt="image" src="https://github.com/user-attachments/assets/637ec226-a0ce-446f-9b65-81f2d325220b" />
 
 ## A summary of key topics you learned about
 
