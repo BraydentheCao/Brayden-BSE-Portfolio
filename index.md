@@ -50,7 +50,13 @@ While making the custom mount, I faced quite a few design challenges, but the bi
 
 ### Triumphs: 
 
-The gesture control works! Like mentioned before, the gesture control works by first recording my hand from my computer and tracking 21 different points on my hand (using mediapipe). What I didn't mention is that the algorithm then calculates the length of my index finger using the base and tip landmarks of it. This raw length value (converted to pixels) is divided by the pixel length of my palm to calculate a relative length. The algorithm also calculates the angle of my index finger. **In creating a relative length, moving my index finger forward and backward relative to my camera will actually change the speed of the robot, while moving my index finger left and right will change the direction**
+The gesture control works! Like mentioned before, the gesture control works by first recording my hand from my computer and tracking 21 different points (aka landmarks) on my hand. What I didn't mention is that the algorithm then calculates the length of my index finger using the base and tip landmarks of it. This raw length value (converted to pixels) is divided by the pixel length of my palm to calculate a relative length. The algorithm also calculates the angle of my index finger. **In creating a relative length, moving my index finger forward and backward relative to my camera will actually change the speed of the robot, while moving my index finger left and right will change the direction**
+
+<br>
+
+This is the mediapipe software creating the 21 landmarks (the points) on my hand
+
+<img width="1254" height="687" alt="image" src="https://github.com/user-attachments/assets/b6c245d4-d800-4cc1-9f3f-2f6ea98fc628" />
 
 <br>
 
