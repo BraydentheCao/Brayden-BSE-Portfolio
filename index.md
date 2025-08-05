@@ -94,6 +94,10 @@ For one, I hope to learn more about lower level code, such as C, and how they in
 Beyond that, adding all of these different elements and fields of engineering into a single career would be I something I would love to learn and experiences later on in my career. Bluestamp engineering has already given me an incredble opportunity with this, and I think continuing down this path into a major, say mechatronics or robotics, would be a dream come true.
 
 <br>
+<img width="768" height="512" alt="image" src="https://github.com/user-attachments/assets/5a1e2b81-9e37-4738-9136-9ab9ca452a19" />
+<br>
+
+<br>
 <hr style="height:3px;border:none;background-color:#ccc;"><br>
 
 # Second Milestone: PID, camera web streaming, ball tracking, camera distance tracking, and finished project
