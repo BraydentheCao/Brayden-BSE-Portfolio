@@ -85,7 +85,7 @@ I learned a vast range of skills, including computer vision, web sockets, hand g
 
 For one, I hope to learn more about lower level code, such as C, and how they integrate with the physical componenets on a device. Using the terminal in VSCode, then on my raspberry pi, then on my computer's window powershell was mesmerizing as I dug deeper into directories in search of packages I installed. The best part? This is just the surface. If anything, I think it's the unknown, endlessness, and fundimental nature of computer engineering that makes me so intriguged by it. Adding code to a custom made mount is one thing, but digging into (and manipulating) how literal atoms interact with each other and how that translates into an entire screen that I can code on is something that genuinely blows my mind.
 
-Beyond that, adding all of these different elements and fields of engineering into a single project would be I something I would love to learn and experiences later on in my career. Bluestamp engineering has already given me an incredble opportunity at this, and I think continuing down this path into a major, say mechatronics or robotics, would be a dream come true.
+Beyond that, adding all of these different elements and fields of engineering into a single career would be I something I would love to learn and experiences later on in my career. Bluestamp engineering has already given me an incredble opportunity with this, and I think continuing down this path into a major, say mechatronics or robotics, would be a dream come true.
 
 <br>
 <hr style="height:3px;border:none;background-color:#ccc;"><br>
@@ -93,6 +93,8 @@ Beyond that, adding all of these different elements and fields of engineering in
 # Second Milestone: PID, camera web streaming, ball tracking, camera distance tracking, and finished project
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/u8KgakuqSV4?si=qzD20MOVRrHcwcu-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<br>
 
 ## Technical summary 
 
@@ -111,6 +113,8 @@ I've also accomplished:
 <hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 ## Technical details
+
+<br>
 
 ### Streaming with the camera
 
@@ -138,15 +142,16 @@ How does it work?
 - It starts by creating a duplicate of every original, uneditted frame and converting it into hsv
 - HSV stands for Hue, Saturation, and Value. Hue represents every color from 1-179, Saturation is the intensity from 0-255, and Value is the brightness from 0-255. HSV is used here to more accurately detect color without too much interference from light level
 - Once created, colors ranges to detect only red, a binary masks, and a bitwiseOr function turn red pixels into white, and then everything else into black
-- Morphological operations (dilate and erode) are used to reduce noise in the image, or in other words remvoe random white spots in the hsv frame (which techanically is red in the original frame). In doing so, there is a clear shape, aka the ball
-- Now that there is an hsv, contouring is used to outline the white pixels in the hsv frame (aka the ball), and this outline is then displayed on the web streaming of the camera
-- To find the center, the average x and y coordinate of every contour is used. This center point of the ballcan then be compared to the actual center of the camera to find the x and y offset of the ball (we care about the x offset only because we can control the left and right position of the ball by turning)
+- Morphological operations (dilate and erode) are used to reduce noise in the image, or in other words remove random white spots in the hsv frame (which techanically is red in the original frame). In doing so, there is a clear circular shape, aka the red ball
+- After hsv is applied, contouring is used to outline the white pixels in the hsv frame (aka the ball), and this outline is then displayed on the web streaming of the camera
+- To find the center, the average x and y coordinate of every contour is used. This center point of the ball can then be compared to the actual center of the camera to find the x and y offset of the ball (we care about the x offset only because we can control the left and right position of the ball by turning)
 - This offset information then becomes useful input data for the rotation PID 
 
 <br>
 <hr style="height:1px;border:none;background-color:#ccc;"><br>
 
-Code (reduced)
+Code (directory: /Code/Tracking/baseProject.py)
+<a href="https://github.com/BraydentheCao/BSE_Code"> Link (in case you missed it)</a><br>
 
 ```python
 # ...Initialize camera and web streaming...
