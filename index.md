@@ -12,10 +12,10 @@ Robot that tracks a ball using a raspberry pi camera and two ultrasonic sensors
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/xLRqnBRs9Pk?si=PUBBMHvU97V0aWAF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-##Links
+## Links
 
-<a href="https://github.com/BraydentheCao/BSE_Code"> Code </a><br>
-<a href="https://cad.onshape.com/documents/69cba9d53024b1578fc0d810/w/c1cbd505540fad05171fcd8c/e/c34b87706353d3bb0c2503f3?renderMode=0&uiState=68915de9023e9a2be35abef6"> Custom mount </a>
+Code: <a href="https://github.com/BraydentheCao/BSE_Code"> Link </a><br>
+Custom mount: <a href="https://cad.onshape.com/documents/69cba9d53024b1578fc0d810/w/c1cbd505540fad05171fcd8c/e/c34b87706353d3bb0c2503f3?renderMode=0&uiState=68915de9023e9a2be35abef6"> Link </a>
 
 
 ## What you've accomplished since your previous milestone
