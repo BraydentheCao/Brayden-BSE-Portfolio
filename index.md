@@ -243,7 +243,7 @@ def ballAnglePID(current, target):
         print("out of bounds")
         return 0
 ```
-<hr style="height:1px;border:none;background-color:#ccc;">
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 
 ### Distance tracking algorithms
