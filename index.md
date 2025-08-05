@@ -73,8 +73,8 @@ With all of the electronic components, here is what it looks like
 
 <img width="911" height="598" alt="image" src="https://github.com/user-attachments/assets/4143e57c-5db0-4cc4-a202-30d0740e82cc" />
 
-My expertise coming into this program is mechanical engineering, but even then, this was definitely a challenging (and very fun) model to make.
-(Here's the link in case you missed it: <a href="https://cad.onshape.com/documents/69cba9d53024b1578fc0d810/w/c1cbd505540fad05171fcd8c/e/e5313dda26885e11e0ae25f9"> Link </a>)
+My expertise coming into this program is mechanical engineering, but even then, this was definitely a challenging (and very fun) model to make.<br>
+(Here's the link in case you missed it: <a href="https://cad.onshape.com/documents/69cba9d53024b1578fc0d810/w/c1cbd505540fad05171fcd8c/e/e5313dda26885e11e0ae25f9">Link</a>)
 
 
 <br>
