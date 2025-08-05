@@ -52,7 +52,7 @@ The branching nature of this mount was thought of somewhat beforehand, as I want
 
 With all of the electronic components, here is what it looks like
 
-<img width="1302" height="855" alt="image" src="https://github.com/user-attachments/assets/4143e57c-5db0-4cc4-a202-30d0740e82cc" />
+<img width="911" height="598" alt="image" src="https://github.com/user-attachments/assets/4143e57c-5db0-4cc4-a202-30d0740e82cc" />
 
 My expertise coming into this program is mechanical engineering, but even then, this was definitely a challenging (and very fun) model to make.
 
