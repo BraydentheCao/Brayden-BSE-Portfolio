@@ -780,6 +780,3 @@ Don't forget to place the link of where to buy each component inside the quotati
 - [Raspberry pi 4 model B](https://grabcad.com/library/raspberry-pi-4-model-b-1)
 <br>
 <br>
-<br>
-<br>
-<hr style="height:3px;border:none;background-color:#ccc;"><br>
