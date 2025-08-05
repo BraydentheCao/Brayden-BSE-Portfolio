@@ -194,15 +194,16 @@ def generate_frames(): # Runs the track_red_ball() function
 
 ### PID rotation algorithm
 
-What is it? 
+#### What is it? 
 - Takes the pixel offset of the ball and calculates the speed needed to rotate to the ball
 - Goal: Rotate the robot such that the ball is in the center
 
 
 **The algorithm is seperated into two parts: A PID function that takes in the current and target position and returns speed between -1 and 1 & a main code that handles what to do with this speed given a certain offset. Keep in mind the motors can have a speed between 0 and 1**
 
+<br>
 
-How does the PID function work?
+#### How does the PID function work?
 
 - The PID function, called ballAnglePID, takes in two parameters: Current x-coordinate of the ball's center and target x-coordinate. Using these two parameters, it calculates the current error. PID works by adding together three different variables, P (proportional), I (integral), and D (derivative) to calculate speed (speed = P + I + D).
 - Do note that PID is sign sensitive, meaning negative and postiive are treated differently, and the output can be positive or negative 
@@ -210,6 +211,8 @@ How does the PID function work?
 - I accumulates the total error over time mulitplied by some constant (ki). It essential checks to make sure the error over time cancels itself out, or in other words, it makes sure that the actual value is approaching the target value over time. For the purposes of my function, it is not too important
 - D finds the difference between the current and previous error, then multiplies it by some constant (kd)
 
+<br>
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 Here is the def ballAnglePID function code:
 
@@ -263,17 +266,18 @@ def ballAnglePID(current, target):
         print("out of bounds")
         return 0
 ```
-<hr style="height:1px;border:none;background-color:#ccc;"><br>
 
+<br>
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 ### Distance tracking algorithms
 
-What is it?
+#### What is it?
 
 - Calulates the ball's distance from the robot
 - There are two functions that calculate distance: One that uses the camera, the other than uses the ultrasonic sensor
 
-How does it work?
+#### How does it work?
 
 The function that uses the ultrasonic sensor is pretty straightforward, while the one that uses the camera is slightly more complicated. I'm only going to cover the camera because of this
 The camera can track distance using proportions due to the nature of how the pi camera works and how it has similar triangles. Essentially, we can have the variables f, R, D, and r. Here is what they stand for:
@@ -283,14 +287,18 @@ The camera can track distance using proportions due to the nature of how the pi 
 - f --> Focal length of the camera (I found this experimentally for this project)
 - r --> Radius of the red ball in pixels from the camera frame
 
+<br>
 
 <img width="673" height="450" alt="Screenshot 2025-07-21 000902" src="https://github.com/user-attachments/assets/44a4be94-9106-47f1-82c0-ce334b23c415" />
 
+<br>
 
 Based on this image, it becomes clear where the similar triangles are, and as such, we can create this proportion:
   - D/R = f/r
   - To isolate D, we get: D = R*f/r
 
+<br>
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 The code is really simple for this algorithm
 
@@ -303,6 +311,9 @@ def measureBallDistance(r, offsetP):
     offsetR = offsetP*D/f
     return D 
 ```
+
+<br>
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 ### Entire tracking algorithm  
 
@@ -325,9 +336,10 @@ def measureBallDistance(r, offsetP):
           Once done, stop the robot completely
     else: spin in place
 
+<br>
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
 
-Here's how the whole algorithm works:
-
+#### Here's how the whole algorithm works:
 
 First, it calculates the current X position of the ball's center and the radius of the ball. (This code has already been shown, but this helps to clarity where variables are coming from)
 
@@ -353,6 +365,8 @@ countours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
       
 ```
 
+<br>
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 After that, we move onto the actual algorithm. We begin with the initial alignment (which as of now doesn't actually work, and I'll explain in the code why that actually works in my favor). 
 
@@ -406,7 +420,9 @@ After that, we move onto the actual algorithm. We begin with the initial alignme
                 rightMotor.stop()
             # Next code is here
 ```
-<hr style="height:1px;border:none;background-color:#ccc;">
+
+<br>
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 The reason this code doesn't run is because it's immediately overriden by the "drive forward quickly" code. This is good actually a good thing because otherwise the robot would constantly correct its orientation every frame, and if the robot is extremely far away, any slight unintended turn will cause the robot to realign over and over again. This repitition causes very little forward movement and forces the robot to shake in place
 
@@ -424,7 +440,9 @@ The "drive forward quickly" is really simple and runs immediately after the init
             else7:
                 # Next code is here
 ```
-<hr style="height:1px;border:none;background-color:#ccc;">
+
+<br>
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 Once the robot is close enough to the ball, it performs another alignment (this time it actually works)
 
@@ -468,7 +486,9 @@ Once the robot is close enough to the ball, it performs another alignment (this 
                     centerCountFrames += 1 # The "time delay" uses the number frames instaed of an actual time.sleep 
                 # Next code is here
 ```
-<hr style="height:1px;border:none;background-color:#ccc;">
+
+<br>
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 Once the robot has been centered for long enough, then the distance alignment begins 
 
@@ -515,7 +535,9 @@ Once the robot has been centered for long enough, then the distance alignment be
 
            
 ```
-<hr style="height:1px;border:none;background-color:#ccc;">
+
+<br>
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 The very end of the algorithm is the display info
     
@@ -529,8 +551,9 @@ The very end of the algorithm is the display info
             leftMotor.backward(.5)
             print(f"Nothing detected: Turning at 0.5")    
 ```
-<hr style="height:1px;border:none;background-color:#ccc;">
 
+<br>
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 ## Suprises about the project so far
 
