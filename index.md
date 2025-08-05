@@ -512,12 +512,12 @@ The very end of the algorithm is the display info
 <hr style="height:1px;border:none;background-color:#ccc;">
 
 
-Suprises about the project so far
+## Suprises about the project so far
 
 Honestly I used to think I didn't like coding nearly as much, but I have been mistaken. I took a class last school year that made me assume this, however, this project has made me love coding again, especially working so much with the terminal. For some reason, I really like interacting with the terminal a lot, maybe because it feels almost like being a hacker
 
 
-Challanges (there were many!)
+## Challanges (there were many!)
 
 1: PID Offset Handling
 
@@ -536,7 +536,7 @@ To fix this, I:
 
 Eventually, I discovered the real issue: the added battery pack weight increased friction, requiring more torque. Removing it brought the floor speed down to 0.3, which was better—but not perfect.
 
-Before/After Summary:
+## Before/After Summary:
 
 Before: L298n + battery pack, carpet → floor speed = 0.5
 After: L9110s + powered from Pi, poster board → floor speed = 0.3
@@ -556,20 +556,29 @@ The final issue was that the code never explicitly handled a speed of 0 in the t
 
 I plan to make two different extensions: A 3D printed mount for all my parts and gesture control
 
-The 3D print I would like 
+The 3D print I would like to have both a case covering the entire robot and a mount for all the electronics. I'm thinking of using curves and branching to create the mount, which should hopefully integrate nicely into the case for the robot
 
+For the gesture control, I'm think about potentially adding another pi and having it connect to a second camera for gesture control (not sure how the finger detection would work), although it is likely easier to just run it using my computer's webcam
+
+<hr style="height:3px;border:none;background-color:#ccc;">
 
 # First Milestone - Assemble the robot and add working ultrasonic sensors
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/r7C_AkfogU0?si=wncgSTxgScqFEAFU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-How everything works together
-- Currently, the robot is comprised of two motors, a raspberry pi, a L298n motor driver, a small breadboard, and two ultrasonic sensors. The image below contains a picture of the schematics with all of the different componenets and how they are powered and controlled electrically
-_____
-Technical summary: 
-- So far, I have assembled the base of the robot with motors and wheels, as well as all of the components previously mentioned, all of which are fully wired and fully functional. For example, I am able to pick up distance readings from both ultrasonic sensors. In addition, I also coded the robot to where it can continuously adjust it's position to be 8-10 cm away from an object by using the ultrasonic sensors and adjusting the speed of the motors accordingly. Currently this feature is only being tested on the left ultrasonic sensor and being applied to both motors for ease of testing 
-_____
-Challenges:
+## How everything works together
+
+Currently, the robot is comprised of two motors, a raspberry pi, a L298n motor driver, a small breadboard, and two ultrasonic sensors. The image below contains a picture of the schematics with all of the different componenets and how they are powered and controlled electrically
+
+<hr style="height:1px;border:none;background-color:#ccc;">
+
+## Technical summary 
+
+So far, I have assembled the base of the robot with motors and wheels, as well as all of the components previously mentioned, all of which are fully wired and fully functional. For example, I am able to pick up distance readings from both ultrasonic sensors. In addition, I also coded the robot to where it can continuously adjust it's position to be 8-10 cm away from an object by using the ultrasonic sensors and adjusting the speed of the motors accordingly. Currently this feature is only being tested on the left ultrasonic sensor and being applied to both motors for ease of testing 
+
+<hr style="height:1px;border:none;background-color:#ccc;">
+
+## Challenges:
 
 So far, I have faced a multitude of challenges, most of which have been due to wiring issues in some capacity. The first one I encountered was using an L298n instead of the motor drivers we were given, as I unfortunately did not recieve the motor drivers, and so instead I decided to improvise by using my own ones. It took a little bit more wiring and slightly different coding, and after some retries with wiring, both motors worked as intended with proper speed control
 
@@ -579,16 +588,16 @@ The third challenge I faced was with controling the robot with the ultrasonic se
 
 <hr style="height:1px;border:none;background-color:#ccc;">
 
-Plan to complete my project:
+## Plan to complete my project:
 - Attach the camera, code it, and get it to work with the ultrasonic sensors
 - After the base project is done, I would like to add a control aspect to the robot, such as using my hand in some way to control it.
 
 <hr style="height:1px;border:none;background-color:#ccc;">
 
-# Schematics 
+## Schematics 
 <img width="717" height="762" alt="image" src="https://github.com/user-attachments/assets/4e5b79de-aa66-4abd-90b7-6870576d4a89" />
 
-# Code
+## Code
 
 ```python
 import RPi.GPIO as GPIO
