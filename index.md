@@ -46,13 +46,15 @@ The custom mount looks amazing! Initially I had this general idea for a custom m
 
 The branching nature of this mount was thought of somewhat beforehand, as I wanted the most minimalistic design possible using the least amount of material. During that time, I thought about how I could make organic branches that go directly from the mounting holes directly to the mounting pieces. After 7 versions, this is what I made (link is also at the top):
 
-<img width="1229" height="600" alt="image" src="https://github.com/user-attachments/assets/637ec226-a0ce-446f-9b65-81f2d325220b" />
+
+<img width="964" height="709" alt="image" src="https://github.com/user-attachments/assets/e3e205ee-7eff-435c-ab9d-1c67b28b2129" />
+
 
 With all of the electronic components, here is what it looks like
 
-<img width="1299" height="600" alt="image" src="https://github.com/user-attachments/assets/772e587c-1c7a-4ea6-a646-1523de9cd751" />
+<img width="1302" height="855" alt="image" src="https://github.com/user-attachments/assets/4143e57c-5db0-4cc4-a202-30d0740e82cc" />
 
-My expertise coming into this program is mechanical engineering/CAD, but even then, this was definitely a very different (and challenging) model to make
+My expertise coming into this program is mechanical engineering, but even then, this was definitely a challenging (and very fun) model to make.
 
 
 ## A summary of key topics you learned about
