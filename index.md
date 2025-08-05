@@ -36,14 +36,22 @@ I ran into several challenges with GitHub. After finishing my base project, I cr
 
 As I was coding the web socket, I faced another error, which was where the flask (which is a way to stream my web cam on chrome using http requests) wouldn't run due to the web socket. This was because I had nested the two in a single thread of code, and the solution was to add threading to my code to run the web socket and flask in parallel and independently of each other.
 
+While making the custom mount, I faced quite a few design challenges, but the biggest one by far was at the beginning, where I didn't actually have any dimensions for the acrylic base plate of my robot. More specifically, I didn't have any dimensions for the distances between any of the holes on the plate, meaning I had to test extensively to get all of the distances correct through trial and error. As you might expect, this took a lengthy amount of time, as I dimensions 10 different distances. I also early on ran into the issue of certain Onshape features (loft in this case) running into errors trying to generate the branches I wanted. As a result, I decided to look up how to create more customizable curves, and it involved bridging curves and surface modeling. The process took nearly 10 times as many features, but the end result look incredible
+
 ### Triumphs: 
 
 The gesture control works! The gesture control works by first recording my hand from my computer and tracking 21 different points on my hand (using mediapipe). It then calculates the relative length of my index finger using the base and tip of it. This value is divided its pixel length by my palm length to calculate the relative length. The algorithm also calculates the angle of my index finger. All of these calculations run on my computer, and data is then transmitted to my pi, where then the pi calculates a speed for each motor to match the angle of my finger. The reason the relative length is used is because the this variable is magnitude constant for how fast the motors should spin. **In creating a relative length, moving my index finger forward and backward relative to my camera will actually change the speed of the robot, while moving my index finger left and right will change the direction**
 
-The custom mount looks amazing! Initially I had this idea around the end of milestone 2, since during that time I was using excessive tape and a hastily build mount to hold everything together. In fact during weeks 1 and 2, I had rebuilt this mount multiple times since it was just too messy initially. 
-The actual branching nature of this 
+The custom mount looks amazing! Initially I had this general idea for a custom mount around the end of milestone 2, since during that time I was using excessive tape and a hastily build mount to hold everything together. In fact during weeks 1 and 2, I had rebuilt this mount multiple times since it was just too messy initially. 
+
+The branching nature of this mount was thought of somewhat beforehand, as I wanted the most minimalistic design possible using the least amount of material. During that time, I thought about how I could make organic branches that go directly from the mounting holes directly to the mounting pieces. After 7 versions, this is what I made (link is also at the top):
 
 <img width="1229" height="892" alt="image" src="https://github.com/user-attachments/assets/637ec226-a0ce-446f-9b65-81f2d325220b" />
+
+With all of the electronic components, here is what it looks like
+
+<img width="1299" height="708" alt="image" src="https://github.com/user-attachments/assets/772e587c-1c7a-4ea6-a646-1523de9cd751" />
+
 
 ## A summary of key topics you learned about
 
