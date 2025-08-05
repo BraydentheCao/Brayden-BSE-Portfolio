@@ -63,7 +63,9 @@ I learned a vast amount of skills, from computer vision, web sockets, hand gestu
 
 ## What you hope to learn in the future after everything you've learned at BSE
 
-## Technical summary
+For one, I hope to learn more about lower level code, such as C, and how they integrate with the physical componenets on a device. Using the terminal in VSCode, then on my raspberry pi, then on my computer's window powershell was mesmerizing as I dug deeper into directories in search of packages I installed. The best part? This is just the surface. If anything, I think it's the unknown, endlessness, and fundimental nature of computer engineering that makes me so intriguged by it. Adding code to a custom made mount is one thing, but digging into (and manipulating) how literal atoms interact with each other and how that translates into an entire screen that I can code on is something that genuinely blows my mind.
+
+Beyond that, adding all of these different elements and fields of engineering into a single project would be I something I would love to learn and experiences later on in my career. Bluestamp engineering has already given me an incredble opportunity at this, and I think continuing down this path into a major, say mechatronics or robotics, would be a dream come true.
 
 # Second Milestone: PID, camera web streaming, ball tracking, camera distance tracking, and finished project
 
