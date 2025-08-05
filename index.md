@@ -14,7 +14,7 @@ Robot that tracks a ball using a raspberry pi camera and two ultrasonic sensors
 
 ##Links
 
-<a href="https://github.com/BraydentheCao/BSE_Code"> Code </a>
+<a href="https://github.com/BraydentheCao/BSE_Code"> Code </a><br>
 <a href="https://cad.onshape.com/documents/69cba9d53024b1578fc0d810/w/c1cbd505540fad05171fcd8c/e/c34b87706353d3bb0c2503f3?renderMode=0&uiState=68915de9023e9a2be35abef6"> Custom mount </a>
 
 
