@@ -680,9 +680,9 @@ Don't forget to place the link of where to buy each component inside the quotati
 | DMM | What the item is used for | $11.00 | <a href="https://www.amazon.com/AstroAI-Digital-Multimeter-Voltage-Tester/dp/B01ISAMUA6"> Link </a> |
 | Champion sports ball | What the item is used for | $16.73 | <a href="https://www.amazon.com/Champion-Sports-Inch-Coated-Density/dp/B000KYTTYO"> Link </a> |
 | AA batteries | What the item is used for | $18.74 | <a href="https://www.amazon.com/Duracell-Coppertop-AA-Ingredients-Long-lasting/dp/B0035LCFNQ"> Link </a> |
-| USB power bank & cable | What the item is used for | $16.19 | <a href="https://www.amazon.com/SIXTHGU-Portable-Charger-Charging-Flashlight/dp/B0C7PHKKNK"> Link </a> |
+| USB power bank & cable | What the item is used for | $16.19 | <a href="https://www.amazon.com/SIXTHGU-Portable-Charger-Charging-Flashlight/dp/B0C7PHKKNK"> Link </a> |<br>
 
-<br><hr style="height:3px;border:none;background-color:#ccc;"><br>
+<hr style="height:3px;border:none;background-color:#ccc;"><br>
 
 # Other resources
 - [Using an ultrasonic distance sensor](https://projects.raspberrypi.org/en/projects/physical-computing/12)
