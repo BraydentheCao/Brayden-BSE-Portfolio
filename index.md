@@ -10,23 +10,17 @@ Robot that tracks a ball using a raspberry pi camera and two ultrasonic sensors
   
 # Final Milestone
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/F7M7imOVGug" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-For your final milestone, explain the outcome of your project. Key details to include are:
-- What you've accomplished since your previous milestone
-- What your biggest challenges and triumphs were at BSE
-- A summary of key topics you learned about
-- What you hope to learn in the future after everything you've learned at BSE
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xLRqnBRs9Pk?si=PUBBMHvU97V0aWAF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## What you've accomplished since your previous milestone
 
-- The first accomplishment I had was creating a custom mount for all the differnt electrical components. This mount has organic curves to branch between the screw holes and the minimalist mounting structure. It weighs just 25 g, holding a raspberry pi, pi camera, pi fan, ultrasonic sensor, motor driver, and breadboard
-- Another accomplishment I had was adding gesture control to my robot. Using my computer's web camera, the gesture control works by running mediapipe on my computer to recognize 21 different points on my hand, computing the angle and length of my index finger. It then uses web sockets to transmit JSON objects encoded with the hand data from my computer to the raspberry pi. The raspberry pi interprets this data with a motor control function, converting the angle reading and the length into motor speeds for the left and right motor
+- The first thing I accomplished was creating a custom mount for all the differnt electrical components. This mount has organic curves to branch between the screw holes and the minimalist mounting structure. It weighs just 25 g, holding a raspberry pi, pi camera, pi fan, ultrasonic sensor, motor driver, and breadboard
+- Another thing I accomplished was adding gesture control to my robot. Using my computer's web camera, the gesture control works by running mediapipe on my computer to recognize 21 different points on my hand, computing the angle and length of my index finger. It then uses web sockets to transmit JSON objects encoded with the hand data from my computer to the raspberry pi. The raspberry pi interprets this data with a motor control function, converting the angle reading and the length into motor speeds for the left and right motor. (This is run seperately from the ball tracking algorithm)
 - I added all of my code for the this project into its own github repository. When I was doing the gesture control extension, I had two windows of vscode open, one hosted on my computer, the other ssh ing into my raspberry pi. 
 
 ## What your biggest challenges and triumphs were at BSE
 
-Challenges:
+###Challenges:
 
 One challenge early on was getting the PID turning controls to be more smooth. I kept running into the issue of the robot overshooting, and I fixed this by changing the turn to rotate only one wheel if the ball's offset from the center of the was within a certain range, where before it was always both wheels turning
 
@@ -34,7 +28,9 @@ I ran into several challenges with GitHub. After finishing my base project, I cr
 
 As I was coding the web socket, I faced another error, which was where the flask (which is a way to stream my web cam on chrome using http requests) wouldn't run due to the web socket. This was because I had nested the two in a single thread of code, and the solution was to add threading to my code to run the web socket and flask in parallel and independently of each other.
 
-Triumphs: 
+###Triumphs: 
+
+The gesture control works! The gesture control is a 
 
 ## A summary of key topics you learned about
 
