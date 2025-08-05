@@ -60,7 +60,7 @@ The gesture control works! Like mentioned before, the gesture control works by f
 
 This is the mediapipe software creating the 21 landmarks (the points) on my hand
 
-<img width="868" height="550" alt="Screenshot 2025-08-04 231248" src="https://github.com/user-attachments/assets/5f137c07-7a6b-465e-9587-19da64f48658" />
+<img width="868" height="618" alt="Screenshot 2025-08-04 231248" src="https://github.com/user-attachments/assets/5f137c07-7a6b-465e-9587-19da64f48658" />
 
 <br>
 
