@@ -356,7 +356,7 @@ def measureBallDistance(r, offsetP):
 <br>
 <hr style="height:1px;border:none;background-color:#ccc;"><br>
 
-#### Here's how the whole algorithm works:
+### Here's how the whole algorithm works:
 
 First, it calculates the current X position of the ball's center and the radius of the ball. (This code has already been shown, but this helps to clarity where variables are coming from)
 
