@@ -639,6 +639,8 @@ For the gesture control, I'm think about potentially adding another pi and havin
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/r7C_AkfogU0?si=wncgSTxgScqFEAFU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+<br>
+
 ## How everything works together
 
 Currently, the robot is comprised of two motors, a raspberry pi, a L298n motor driver, a small breadboard, and two ultrasonic sensors. The image below contains a picture of the schematics with all of the different componenets and how they are powered and controlled electrically
