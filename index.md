@@ -16,7 +16,7 @@ Robot that tracks a ball using a raspberry pi camera and two ultrasonic sensors
 
 Code: <a href="https://github.com/BraydentheCao/BSE_Code"> Link </a><br>
 Custom mount: <a href="https://cad.onshape.com/documents/69cba9d53024b1578fc0d810/w/c1cbd505540fad05171fcd8c/e/e5313dda26885e11e0ae25f9"> Link </a>
-
+<hr style="height:1px;border:none;background-color:#ccc;"><br>
 
 ## What you've accomplished since your previous milestone
 
@@ -249,16 +249,19 @@ def ballAnglePID(current, target):
 ### Distance tracking algorithms
 
 What is it?
+
 - Calulates the ball's distance from the robot
 - There are two functions that calculate distance: One that uses the camera, the other than uses the ultrasonic sensor
 
 How does it work?
-- The function that uses the ultrasonic sensor is pretty straightforward, while the one that uses the camera is slightly more complicated. I'm only going to cover the camera because of this
-- The camera can track distance using proportions due to the nature of how the pi camera works and how it has similar triangles. Essentially, we can have the variables f, R, D, and r. Here is what they stand for:
-  - R --> Radius of the red ball in real life (physically measured in cm)
-  - D --> Distance of the ball from the camera (we are trying to find this value)
-  - f --> Focal length of the camera (I found this experimentally for this project)
-  - r --> Radius of the red ball in pixels from the camera frame
+
+The function that uses the ultrasonic sensor is pretty straightforward, while the one that uses the camera is slightly more complicated. I'm only going to cover the camera because of this
+The camera can track distance using proportions due to the nature of how the pi camera works and how it has similar triangles. Essentially, we can have the variables f, R, D, and r. Here is what they stand for:
+
+- R --> Radius of the red ball in real life (physically measured in cm)
+- D --> Distance of the ball from the camera (we are trying to find this value)
+- f --> Focal length of the camera (I found this experimentally for this project)
+- r --> Radius of the red ball in pixels from the camera frame
 
 
 <img width="673" height="450" alt="Screenshot 2025-07-21 000902" src="https://github.com/user-attachments/assets/44a4be94-9106-47f1-82c0-ce334b23c415" />
@@ -383,6 +386,7 @@ After that, we move onto the actual algorithm. We begin with the initial alignme
                 rightMotor.stop()
             # Next code is here
 ```
+<hr style="height:1px;border:none;background-color:#ccc;">
 
 The reason this code doesn't run is because it's immediately overriden by the "drive forward quickly" code. This is good actually a good thing because otherwise the robot would constantly correct its orientation every frame, and if the robot is extremely far away, any slight unintended turn will cause the robot to realign over and over again. This repitition causes very little forward movement and forces the robot to shake in place
 
@@ -400,6 +404,7 @@ The "drive forward quickly" is really simple and runs immediately after the init
             else7:
                 # Next code is here
 ```
+<hr style="height:1px;border:none;background-color:#ccc;">
 
 Once the robot is close enough to the ball, it performs another alignment (this time it actually works)
 
@@ -443,6 +448,7 @@ Once the robot is close enough to the ball, it performs another alignment (this 
                     centerCountFrames += 1 # The "time delay" uses the number frames instaed of an actual time.sleep 
                 # Next code is here
 ```
+<hr style="height:1px;border:none;background-color:#ccc;">
 
 Once the robot has been centered for long enough, then the distance alignment begins 
 
@@ -489,6 +495,7 @@ Once the robot has been centered for long enough, then the distance alignment be
 
            
 ```
+<hr style="height:1px;border:none;background-color:#ccc;">
 
 The very end of the algorithm is the display info
     
@@ -502,11 +509,10 @@ The very end of the algorithm is the display info
             leftMotor.backward(.5)
             print(f"Nothing detected: Turning at 0.5")    
 ```
+<hr style="height:1px;border:none;background-color:#ccc;">
 
-add display text here
 
 Suprises about the project so far
-
 
 Honestly I used to think I didn't like coding nearly as much, but I have been mistaken. I took a class last school year that made me assume this, however, this project has made me love coding again, especially working so much with the terminal. For some reason, I really like interacting with the terminal a lot, maybe because it feels almost like being a hacker
 
@@ -564,14 +570,21 @@ Technical summary:
 - So far, I have assembled the base of the robot with motors and wheels, as well as all of the components previously mentioned, all of which are fully wired and fully functional. For example, I am able to pick up distance readings from both ultrasonic sensors. In addition, I also coded the robot to where it can continuously adjust it's position to be 8-10 cm away from an object by using the ultrasonic sensors and adjusting the speed of the motors accordingly. Currently this feature is only being tested on the left ultrasonic sensor and being applied to both motors for ease of testing 
 _____
 Challenges:
-- So far, I have faced a multitude of challenges, most of which have been due to wiring issues in some capacity. The first one I encountered was using an L298n instead of the motor drivers we were given, as I unfortunately did not recieve the motor drivers, and so instead I decided to improvise by using my own ones. It took a little bit more wiring and slightly different coding, and after some retries with wiring, both motors worked as intended with proper speed control
-- The second challenge I faced was with wiring the ultrasonic sensors. The ultrasonic sensors' echo wire needs to have a voltage cap of 3.3V before it can be connected to the raspberry pi (it outputs a signal with 5V), therefore 1K and 2K resistor must be use as not to damage the raspberry pi. At first, I wasn't able to figure out why exactly my wires had an issue, but some time, I realized it was because I connected the resistor and echo wire on different rails and so they weren't actually connected
-- The third challenge I faced was with controling the robot with the ultrasonic sensors. I was able to get the robot to move forward above 10 cm of distance (using the formula speed = 0.05*distance+0.4) and get the robot the move backward with a distance under 8 cm, however the issue was that robot would start ocillating between the forward and backwards motion likely due to the robot overshooting the intended distance. Another issue was below around a speed of 0.3-0.4, the robot wasn't able to spin its motors likely due to too low of a voltage and a lack of torque. Very likely I will have to use PID controls to assist with this
-_____
-Plan to complete your project:
+
+So far, I have faced a multitude of challenges, most of which have been due to wiring issues in some capacity. The first one I encountered was using an L298n instead of the motor drivers we were given, as I unfortunately did not recieve the motor drivers, and so instead I decided to improvise by using my own ones. It took a little bit more wiring and slightly different coding, and after some retries with wiring, both motors worked as intended with proper speed control
+
+The second challenge I faced was with wiring the ultrasonic sensors. The ultrasonic sensors' echo wire needs to have a voltage cap of 3.3V before it can be connected to the raspberry pi (it outputs a signal with 5V), therefore 1K and 2K resistor must be use as not to damage the raspberry pi. At first, I wasn't able to figure out why exactly my wires had an issue, but some time, I realized it was because I connected the resistor and echo wire on different rails and so they weren't actually connected
+
+The third challenge I faced was with controling the robot with the ultrasonic sensors. I was able to get the robot to move forward above 10 cm of distance (using the formula speed = 0.05*distance+0.4) and get the robot the move backward with a distance under 8 cm, however the issue was that robot would start ocillating between the forward and backwards motion likely due to the robot overshooting the intended distance. Another issue was below around a speed of 0.3-0.4, the robot wasn't able to spin its motors likely due to too low of a voltage and a lack of torque. Very likely I will have to use PID controls to assist with this:
+
+<hr style="height:1px;border:none;background-color:#ccc;">
+
+Plan to complete my project:
 - Attach the camera, code it, and get it to work with the ultrasonic sensors
 - After the base project is done, I would like to add a control aspect to the robot, such as using my hand in some way to control it.
-_____
+
+<hr style="height:1px;border:none;background-color:#ccc;">
+
 # Schematics 
 <img width="717" height="762" alt="image" src="https://github.com/user-attachments/assets/4e5b79de-aa66-4abd-90b7-6870576d4a89" />
 
@@ -636,6 +649,7 @@ while True:
           leftMotor.forward(0)
           rightMotor.forward(0)
 ```
+<hr style="height:1px;border:none;background-color:#ccc;">
 
 # Bill of Materials
 Here's where you'll list the parts in your project. To add more rows, just copy and paste the example rows below.
