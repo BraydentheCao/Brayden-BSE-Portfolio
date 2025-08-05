@@ -334,25 +334,28 @@ def measureBallDistance(r, offsetP):
 
 ### Entire tracking algorithm  
 
-  The code structure looks something like this:
-  <br>
-  PID turn function<br>
-  ball distance function using camera<br>
-  ball distance function using ultrasonic sensor<br>
+The code structure (pseudocode) looks something like this:
 
-  Looping code:<br>
-    Calculate current X position of the ball's center<br>
-    Calculate turnSpeed using PID turn function<br>
-    if ball is detected:<br>
-      Do initial alignment (I don't think this runs as intended right now, although I think that works in my favor)<br>
-      If ball distance is over 35: drive forward quickly<br>
-      else: <br>
-        Rotate robot until algined, stop when aligned<br>
-        If robot has been stopped for long enough:<br>
-          Align the robot's distance with the ball<br>
-          Once done, stop the robot completely<br>
-    else: spin in place<br>
+```python
+  '''
+  PID turn function
+  ball distance function using camera
+  ball distance function using ultrasonic sensor
 
+  Looping code:
+    Calculate current X position of the ball's center
+    Calculate turnSpeed using PID turn function
+    if ball is detected:
+      Do initial alignment (I don't think this runs as intended right now, although I think that works in my favor)
+      If ball distance is over 35: drive forward quickly
+      else: 
+        Rotate robot until algined, stop when aligned
+        If robot has been stopped for long enough:
+          Align the robot's distance with the ball
+          Once done, stop the robot completely
+    else: spin in place
+  '''
+```
 <br>
 <hr style="height:1px;border:none;background-color:#ccc;"><br>
 
