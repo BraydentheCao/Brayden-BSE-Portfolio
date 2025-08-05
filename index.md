@@ -699,3 +699,5 @@ Don't forget to place the link of where to buy each component inside the quotati
 - [Ultrasonic sensor](https://grabcad.com/library/hc-sr04-13)
 - [Raspberry pi fan](https://grabcad.com/library/fan-30x30x8mm-5v-2-pin-1)
 - [Raspberry pi 4 model B](https://grabcad.com/library/raspberry-pi-4-model-b-1)
+<br>
+<br>
